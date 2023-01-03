@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6J9HCEGTE7"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        
+        gtag('config', 'G-6J9HCEGTE7');
+    </script>
+    <title>DALLE-E 2: The Ultimate Image Generator</title>
+    <meta name="keywords" content="image generator, DALLE-E 2, photorealistic images, text prompts, creativity">
+    <meta name="description" content="Transform your ideas into stunning, photorealistic images with the DALLE-E 2 Image Generator. Simply enter a text prompt describing the image you want to create, and let the power of the DALLE-E 2 API do the rest. Whether you're an artist, a designer, or just looking for a fun way to express your creativity, our image generator has something for you.">
+    <!-- Link to Milligram CSS file hosted on a CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css" integrity="sha512-xiunq9hpKsIcz42zt0o2vCo34xV0j6Ny8hgEylN3XBglZDtTZ2nwnqF/Z/TTCc18sGdvCjbFInNd++6q3J0N6g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    
+    <div class="container">
+        <div class="row">
+            <div class="columnn column-100">
+                <h1>Welcome to the DALLE-E 2 Image Generator</h1>
+                <p> With our web application, you can turn your ideas into stunning, photorealistic images with just a few simple text prompts. Simply enter a description of the image you want to create, and let the power of the DALLE-E 2 API do the rest. Whether you're an artist, a designer, or just looking for a fun way to express your creativity, our image generator has something for you. </p>
+                <h2>How to Use the Image Generator</h2>
+                <p>
+                    Using our image generator is easy! Simply enter a text prompt in the input field and click the 'Generate' button. You can be as specific or as general as you like in your prompt - the DALLE-E 2 API is capable of generating a wide range of images based on your descriptions. Give it a try and see what kind of amazing images you can create!
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column column-50">
+                <form id="form">
+                    <label for="text">Enter text to generate an image:</label><br>
+                    <input type="text" id="text" name="text"><br>
+                    <button type="submit">Generate</button>
+                </form>
+            </div> 
+            <div class="column column-50">
+                <div id="loader" style="display:none">Loading...</div>
+                <div id="image-container"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const form = document.getElementById('form');
+        form.addEventListener('submit', event => {
+            event.preventDefault();
+            const text = form.elements['text'].value; 
+            const imageContainer = document.getElementById('image-container');
+            document.getElementById("loader").style.display = "block";
+            // Remove all child nodes of the image container
+            if(imageContainer.firstChild){
+                while (imageContainer.firstChild) {
+                    imageContainer.removeChild(imageContainer.firstChild);
+                }
+            } 
+            fetch('/generate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ text })
+            }).then(response => {
+                if (!response.ok) {
+                    throw new Error(`Request failed with status code: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                const image = document.createElement('img');
+                const url = document.createElement('a')
+                image.src = data.url;
+                url.href = data.url;
+                url.textContent = "Image link here."
+                url.target = '_blank'; 
+                imageContainer.appendChild(image);
+                imageContainer.appendChild(url);
+                document.getElementById("loader").style.display = "none";
+            })
+            .catch(error => {
+                console.error(error);
+                document.getElementById("loader").style.display = "none";
+            });
+        });
+    </script>
+</body>
+</html>
