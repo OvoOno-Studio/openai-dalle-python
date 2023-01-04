@@ -1,21 +1,26 @@
-import openai
+import openai 
 from flask import Flask, request, render_template, jsonify
+from config import APIKey 
 
 # Set the API key
-openai.api_key = "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"
+openai.api_key = str(APIKey)
 
 app = Flask(__name__)
+
+class Form:
+    def __init__(self):
+        self.text = ""
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/generate', methods=['POST'])
+@app.route('/generate', methods=['POST', 'GET'])
 def generate():
     # Get the text to generate an image for
-    text = request.form.get('text')
-    # Set the prompt for the image
-    prompt = f"Write a description of the image you want to generate based on the following text: {text}"
+    text = request.data
+    # Set the prompt for the image 
+    prompt = str(text)
     model = "image-alpha-001"
     num_images = 1
     size = "1024x1024"
@@ -27,7 +32,7 @@ def generate():
         n=num_images,
         size=size,
         response_format=response_format 
-    ) 
+    )  
     
     # Return the generated image URL to the client 
     return jsonify({'url': response['data'][0]['url']})
