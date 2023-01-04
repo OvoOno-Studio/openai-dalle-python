@@ -50,13 +50,14 @@
         </div>
     </div>
     <script> 
-        const form = document.getElementById('form');
-        form.addEventListener('submit', event => {
-            event.preventDefault();
-            // Execute the reCAPTCHA verification
-            grecaptcha.ready(function() {
-                grecaptcha.execute('6LdeTdAjAAAAAPGWzX9fKu4lUXMeef2zaAhs-nXy', {action: 'submit'}).then(function(token) {
-                    // Add the reCAPTCHA token to the request header
+         const form = document.getElementById('form');
+            form.addEventListener('submit', event => {
+                event.preventDefault();
+                // Get the reCAPTCHA response
+                const response = grecaptcha.getResponse();
+                // Check if the response is not empty (i.e. reCAPTCHA was successfully verified)
+                if (response) {
+                    // reCAPTCHA was successfully verified
                     const text = form.elements['text'].value;
                     const imageContainer = document.getElementById('image-container');
                     document.getElementById("loader").style.display = "block";
@@ -70,13 +71,12 @@
                         method: 'POST',
                         headers: {
                             'Content-Type': 'text/plain',
-                            'x-recaptcha-token': token
+                            'x-recaptcha-response': response
                         },
                         body: text
                     }).then(response => {
                         if (!response.ok) {
-                            // reCAPTCHA verification failed
-                            throw new Error('reCAPTCHA verification failed');
+                            throw new Error(`Request failed with status code: ${response.status}`);
                         }
                         return response.json();
                     })
@@ -99,9 +99,14 @@
                         imageContainer.appendChild(errorMessage);
                         document.getElementById("loader").style.display = "none";
                     });
-                });
+                } else {
+                    // reCAPTCHA verification failed
+                    // Display an error message
+                    const errorMessage = document.createElement('p');
+                    errorMessage.textContent = 'reCAPTCHA verification failed';
+                    imageContainer.appendChild(errorMessage);
+                }
             });
-        });
     </script>
 </body>
 </html>
