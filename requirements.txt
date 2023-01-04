@@ -1,2 +1,6 @@
 flask
-request
+requests
+python-dotenv
+openai
+pillow
+datetime

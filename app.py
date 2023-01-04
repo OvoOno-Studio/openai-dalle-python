@@ -25,7 +25,7 @@ def form():
     image = create_captcha_image(captcha_code)
     
     # Save the image to a temporary file
-    image.save('captcha.png')
+    image.save('static/images/captcha.png')
     
     # Render the form template and pass the image URL to it
     return render_template('form.html', captcha_image_url='captcha.png')
