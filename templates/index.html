@@ -29,14 +29,9 @@
             </div>
         </div>
         <div class="row">
-            <div class="column column-50">
-                <form id="form">
-                    <label for="text">Enter text to generate an image:</label><br>
-                    <input type="text" id="text" name="text"><br>
-                    <button type="submit">Generate</button>
-                </form> 
-                
+            <div class="column column-50"> 
                 {% include 'form.html' %} 
+                <div id="loader" style="display: none;"></div>
             </div>  
         </div>
         <div class="row">
