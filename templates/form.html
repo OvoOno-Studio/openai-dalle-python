@@ -1,15 +1,6 @@
-<form action="/submit" method="post">
-    <!-- Display the CAPTCHA image -->
-    <img src="{{ captcha_image_url }}" alt="CAPTCHA code">
-    <br>
+<script src="https://www.google.com/recaptcha/api.js?render=6LdeTdAjAAAAAPGWzX9fKu4lUXMeef2zaAhs-nXy"></script>
 
-    <!-- Input field for the user to enter the CAPTCHA code -->
-    <input type="text" name="captcha_user_input">
-    <br>
-
-    <!-- Hidden field to store the correct CAPTCHA code -->
-    <input type="hidden" name="captcha_code" value="{{ captcha_code }}">
-
-    <!-- Submit button -->
-    <input type="submit" value="Submit">
-</form>
+<button class="g-recaptcha" 
+        data-sitekey="6LdeTdAjAAAAAPGWzX9fKu4lUXMeef2zaAhs-nXy" 
+        data-callback='onSubmit' 
+        data-action='submit'>Submit</button>
