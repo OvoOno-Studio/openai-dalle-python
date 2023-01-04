@@ -1,4 +1,5 @@
 logs
 .htaccess
 __pycache__
-.env 
+.env
+.cpanel.yml
