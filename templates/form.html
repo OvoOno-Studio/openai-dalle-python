@@ -1,0 +1,15 @@
+<form action="/submit" method="post">
+    <!-- Display the CAPTCHA image -->
+    <img src="{{ captcha_image_url }}" alt="CAPTCHA code">
+    <br>
+
+    <!-- Input field for the user to enter the CAPTCHA code -->
+    <input type="text" name="captcha_user_input">
+    <br>
+
+    <!-- Hidden field to store the correct CAPTCHA code -->
+    <input type="hidden" name="captcha_code" value="{{ captcha_code }}">
+
+    <!-- Submit button -->
+    <input type="submit" value="Submit">
+</form>
