@@ -8,7 +8,6 @@ openai.api_key = str(APIKey)
 
 app = Flask(__name__) 
 
-#
 class Form:
     def __init__(self):
         self.text = ""
@@ -16,6 +15,21 @@ class Form:
 @app.route('/')
 def index():
     return render_template('index.html') 
+
+
+def save_image(image_url, save_path, image_name):
+    """
+    Save an image from a URL to a specified location on the server.
+    
+    Parameters:
+    image_url (str): The URL of the image to be saved.
+    save_path (str): The path to the location where the image will be saved (including the folder).
+    image_name (str): The name to be given to the saved image.
+    
+    Returns:
+    None
+    """
+    urllib.request.urlretrieve(image_url, f"{save_path}/{image_name}")
 
 @app.route('/generate', methods=['POST', 'GET'])
 def generate():
