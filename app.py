@@ -37,7 +37,7 @@ def generate():
     )  
     
     # Get the URL of the generated image
-    image_url = response['data'][0]['url']
+    image_url = jsonify({'url': response['data'][0]['url']})
     
     # Download the image and save it to the app folder
     image_name = "image.jpg"  # You can choose a different name for the image here
