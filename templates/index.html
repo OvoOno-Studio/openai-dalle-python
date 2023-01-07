@@ -52,50 +52,55 @@
     <script> 
         const form = document.getElementById('form');
         form.addEventListener('submit', event => {
-            event.preventDefault();
-            // Execute the reCAPTCHA verification
-            grecaptcha.ready(function() {
-                grecaptcha.execute('6LdeTdAjAAAAAPGWzX9fKu4lUXMeef2zaAhs-nXy', {action: 'submit'}).then(function(token) {
-                    // Add the reCAPTCHA token to the request header
-                    const text = form.elements['text'].value;
-                    const imageContainer = document.getElementById('image-container');
-                    document.getElementById("loader").style.display = "block";
-                    // Remove all child nodes of the image container
-                    if(imageContainer.firstChild){
-                        while (imageContainer.firstChild) {
-                            imageContainer.removeChild(imageContainer.firstChild);
-                        }
-                    } 
-                    fetch('/generate', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'text/plain',
-                            'x-recaptcha-token': token
-                        },
-                        body: text
-                    }).then(response => {
-                        if (!response.ok) {
-                            throw new Error(`Request failed with status code: ${response.status}`);
-                        }
-                        return response.json();
-                    })
-                    .then(data => {
-                        const image = document.createElement('img');
-                        const url = document.createElement('a')
-                        image.src = data.url;
-                        url.href = data.url;
-                        url.textContent = "Image link here."
-                        url.target = '_blank'; 
-                        imageContainer.appendChild(image);
-                        imageContainer.appendChild(url);
-                        document.getElementById("loader").style.display = "none";
-                    })
-                    .catch(error => {
-                        console.error(error);
-                        document.getElementById("loader").style.display = "none";
-                    });
+        event.preventDefault();
+        
+        // Execute the reCAPTCHA verification
+        grecaptcha.ready(function() {
+            grecaptcha.execute('6LdeTdAjAAAAAPGWzX9fKu4lUXMeef2zaAhs-nXy', { action: 'submit' }).then(function(token) {
+            // Add the reCAPTCHA token to the request header
+            const text = form.elements['text'].value;
+            const imageContainer = document.getElementById('image-container');
+            document.getElementById('loader').style.display = 'block';
+
+            // Remove all child nodes of the image container
+            if (imageContainer.firstChild) {
+                while (imageContainer.firstChild) {
+                imageContainer.removeChild(imageContainer.firstChild);
+                }
+            }
+
+            fetch('/generate', {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'text/plain',
+                'x-recaptcha-token': token,
+                },
+                body: text,
+            })
+                .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Request failed with status code: ${response.status}`);
+                }
+
+                return response.json();
+                })
+                .then(data => {
+                const image = document.createElement('img');
+                const url = document.createElement('a');
+                image.src = data.url;
+                url.href = data.url;
+                url.textContent = 'Image link here.';
+                url.target = '_blank';
+                imageContainer.appendChild(image);
+                imageContainer.appendChild(url);
+                document.getElementById('loader').style.display = 'none';
+                })
+                .catch(error => {
+                console.error(error);
+                document.getElementById('loader').style.display = 'none';
                 });
             });
+        });
         });
     </script>
 </body>
