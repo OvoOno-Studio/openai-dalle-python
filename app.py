@@ -1,17 +1,14 @@
 import openai 
 from flask import Flask, request, render_template, jsonify
 from config import APIKey
-from PIL import Image, ImageDraw, ImageFont
-import random, string
+import urllib.request
 
 # Set the API key
 openai.api_key = str(APIKey)
 
-app = Flask(__name__)
+app = Flask(__name__) 
 
-# Dictionary to store the number of API requests made by each user
-request_count = {}
-
+#
 class Form:
     def __init__(self):
         self.text = ""
@@ -38,6 +35,14 @@ def generate():
         size=size,
         response_format=response_format 
     )  
+    
+    # Get the URL of the generated image
+    image_url = response['data'][0]['url']
+    
+    # Download the image and save it to the app folder
+    image_name = "image.jpg"  # You can choose a different name for the image here
+    app_folder = "/home/emelrizv/public_html/dalle.emelrizvanovic.com/static/images/generated"  
+    urllib.request.urlretrieve(image_url, f"{app_folder}/{image_name}")
     
     # Return the generated image URL to the client 
     return jsonify({'url': response['data'][0]['url']})
