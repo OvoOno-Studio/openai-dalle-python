@@ -32,14 +32,16 @@
             <div class="column column-50"> 
                 {% include 'form.html' %}  
             </div>  
-            <div class="column column-50">
-                <form action="/donate" method="POST">
-                    <label for="wallet_address">Wallet Address:</label><br>
-                    <input type="text" id="wallet_address" name="wallet_address"><br>
-                    <label for="amount">Amount to Donate (in Ether):</label><br>
-                    <input type="text" id="amount" name="amount"><br><br>
-                    <input type="submit" value="Submit">
-                </form> 
+            <div class="column column-50"> 
+                <ul>
+                    <li> Max 5 request per day </li>
+                    <li> Donating will show resizble image for social platforms </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <h3> 1024x1024 resolution </h3>
                 <!-- The HTML markup for the loading animation -->
                 <div id="loader" style="display: none;">
                     <h5>Loading...</h5>
@@ -47,11 +49,6 @@
                         <circle cx="25" cy="25" r="5" fill="none" stroke="#00bfff" stroke-width="5"/>
                     </svg>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="column">
-                <h3> 1024x1024 resolution </h3>
                 <div id="image-container"></div>
             </div>
         </div>
