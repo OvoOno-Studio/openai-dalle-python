@@ -23,10 +23,7 @@ class Form:
 
 @app.route('/')
 def index():
-    return render_template('index.html') 
-
-def save_image(image_url, save_path, image_name):
-    urllib.request.urlretrieve(image_url, f"{save_path}/{image_name}")
+    return render_template('index.html')  
 
 @app.route('/donate', methods=['POST'])
 def donate():
@@ -95,18 +92,8 @@ def generate():
         n=num_images,
         size=size,
         response_format=response_format 
-    )  
+    )   
     
-    # Save the generated image
-    save_path = "static/images/generated"
-    image_name = "image.jpg"
-     
-    # Check if the user has permission to write to the save location
-    if os.access(save_path, os.W_OK):
-        save_image(response['data'][0]['url'], save_path, image_name)
-    else:
-        return jsonify({'error': 'Insufficient permissions to save image.'})
-
     # Return the generated image URL to the client 
     return jsonify({'url': response['data'][0]['url']})
 
