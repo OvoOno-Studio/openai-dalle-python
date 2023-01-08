@@ -3,7 +3,7 @@ import os
 from web3 import Web3
 from flask import Flask, request, render_template, jsonify
 from config import APIKey, InfuraKey
-import urllib.request
+import requests
 import datetime
 
 # Counts per IP
@@ -23,21 +23,7 @@ class Form:
 
 @app.route('/')
 def index():
-    return render_template('index.html') 
-
-def save_image(image_url, save_path, image_name):
-    """
-    Save an image from a URL to a specified location on the server.
-    
-    Parameters:
-    image_url (str): The URL of the image to be saved.
-    save_path (str): The path to the location where the image will be saved (including the folder).
-    image_name (str): The name to be given to the saved image.
-    
-    Returns:
-    None
-    """
-    urllib.request.urlretrieve(image_url, f"{save_path}/{image_name}")
+    return render_template('index.html')  
 
 @app.route('/donate', methods=['POST'])
 def donate():
@@ -107,17 +93,7 @@ def generate():
         size=size,
         response_format=response_format 
     )  
-    
-    # Save the generated image
-    save_path = "static/images/generated"
-    image_name = "image.jpg"
      
-    # Check if the user has permission to write to the save location
-    if os.access(save_path, os.W_OK):
-        save_image(response['data'][0]['url'], save_path, image_name)
-    else:
-        return jsonify({'error': 'Insufficient permissions to save image.'})
-
     # Return the generated image URL to the client 
     return jsonify({'url': response['data'][0]['url']})
 
