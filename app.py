@@ -2,6 +2,10 @@ import openai
 from flask import Flask, request, render_template, jsonify
 from config import APIKey
 import urllib.request
+import datetime
+
+# Counts per IP
+request_counts = {}
 
 # Set the API key
 openai.api_key = str(APIKey)
@@ -33,6 +37,22 @@ def save_image(image_url, save_path, image_name):
 
 @app.route('/generate', methods=['POST', 'GET'])
 def generate():
+    # Get the user's IP
+    user_ip = request.remote_addr
+
+    # Check if the user's IP is in the dictionary
+    if user_ip not in request_counts:
+        # If not, add it and set the count to 1
+        request_counts[user_ip] = {'count': 1, 'timestamp': datetime.datetime.now()}
+    else:
+        # If it is, increment the count
+        request_counts[user_ip]['count'] += 1
+
+    # Check if the user has made more than 5 requests today
+    if request_counts[user_ip]['count'] > 5:
+        # If they have, return an error message
+        return jsonify({'error': 'You have exceeded the daily request limit.'})
+        
     # Get the text to generate an image for
     text = request.data
     # Set the prompt for the image 

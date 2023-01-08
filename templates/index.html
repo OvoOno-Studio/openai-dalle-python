@@ -30,9 +30,16 @@
         </div>
         <div class="row">
             <div class="column column-50"> 
-                {% include 'form.html' %} 
-                <div id="loader" style="display: none;"></div>
+                {% include 'form.html' %}  
             </div>  
+            <div class="column column-50">
+                <!-- The HTML markup for the loading animation -->
+                <div id="loader" style="display: none;">
+                    <svg viewBox="0 0 50 50">
+                        <circle cx="25" cy="25" r="20" fill="none" stroke="#00bfff" stroke-width="5"/>
+                    </svg>
+                </div>
+            </div>
         </div>
         <div class="row">
             <div class="column">
