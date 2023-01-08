@@ -25,7 +25,18 @@ class Form:
 def index():
     return render_template('index.html') 
 
-def save_image(image_url, save_path, image_name): 
+def save_image(image_url, save_path, image_name):
+    """
+    Save an image from a URL to a specified location on the server.
+    
+    Parameters:
+    image_url (str): The URL of the image to be saved.
+    save_path (str): The path to the location where the image will be saved (including the folder).
+    image_name (str): The name to be given to the saved image.
+    
+    Returns:
+    None
+    """
     urllib.request.urlretrieve(image_url, f"{save_path}/{image_name}")
 
 @app.route('/donate', methods=['POST'])
