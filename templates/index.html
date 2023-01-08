@@ -33,11 +33,18 @@
                 {% include 'form.html' %}  
             </div>  
             <div class="column column-50">
+                <form action="/donate" method="POST">
+                    <label for="wallet_address">Wallet Address:</label><br>
+                    <input type="text" id="wallet_address" name="wallet_address"><br>
+                    <label for="amount">Amount to Donate (in Ether):</label><br>
+                    <input type="text" id="amount" name="amount"><br><br>
+                    <input type="submit" value="Submit">
+                </form> 
                 <!-- The HTML markup for the loading animation -->
-                <h5>Loading...</h5>
                 <div id="loader" style="display: none;">
-                    <svg viewBox="0 0 50 50">
-                        <circle cx="25" cy="25" r="10" fill="none" stroke="#00bfff" stroke-width="5"/>
+                    <h5>Loading...</h5>
+                    <svg viewBox="0 0 25 25">
+                        <circle cx="25" cy="25" r="5" fill="none" stroke="#00bfff" stroke-width="5"/>
                     </svg>
                 </div>
             </div>
