@@ -41,7 +41,14 @@
         </div>
         <div class="row">
             <div class="column">
-                <h3> 1024x1024 resolution </h3>
+                <div class="row">
+                    <div class="column">
+                        <h3> 1024x1024 resolution </h3>
+                    </div>
+                    <div id="link-container" class="column column-offset-50">
+                        
+                    </div>
+                </div>
                 <!-- The HTML markup for the loading animation -->
                 <div id="loader" style="display: none;">
                     <h5>Loading...</h5> 
@@ -100,12 +107,13 @@
                     .then(data => {
                         const image = document.createElement('img');
                         const url = document.createElement('a');
+                        const linkContainer = document.getElementById('link-container');
                         image.src = data.url;
                         url.href = data.url;
                         url.textContent = 'Image link here.';
                         url.target = '_blank';
                         imageContainer.appendChild(image);
-                        imageContainer.appendChild(url);
+                        linkContainer.appendChild(url);
                         document.getElementById('loader').style.display = 'none';
                     })
                     .catch(error => {
