@@ -2,7 +2,7 @@ import openai
 import os
 from web3 import Web3
 from flask import Flask, request, render_template, jsonify
-from config import APIKey, InfuraKey 
+from config import APIKey, InfuraKey, dbPW
 import MySQLdb
 
 # Counts per IP
@@ -61,7 +61,7 @@ def donate():
 @app.route('/generate', methods=['POST', 'GET'])
 def generate():
     # Connect to the database
-    db = MySQLdb.connect(host="localhost", user="user", passwd="password", db="database")
+    db = MySQLdb.connect(host="localhost", user="emelrizv_devemel", passwd=f"{dbPW}", db="emelrizv_dalle")
     cursor = db.cursor()
 
     # Get the user's IP
