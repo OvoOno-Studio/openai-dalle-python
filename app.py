@@ -2,9 +2,8 @@ import openai
 import os
 from web3 import Web3
 from flask import Flask, request, render_template, jsonify
-from config import APIKey, InfuraKey
-import urllib.request
-import datetime
+from config import APIKey, InfuraKey 
+import MySQLdb
 
 # Counts per IP
 request_counts = {}
@@ -61,20 +60,30 @@ def donate():
 
 @app.route('/generate', methods=['POST', 'GET'])
 def generate():
+    # Connect to the database
+    db = MySQLdb.connect(host="localhost", user="user", passwd="password", db="database")
+    cursor = db.cursor()
+
     # Get the user's IP
     user_ip = request.remote_addr
 
-    # Check if the user's IP is in the dictionary
-    if user_ip not in request_counts:
-        # If not, add it and set the count to 1
-        request_counts[user_ip] = {'count': 1, 'timestamp': datetime.datetime.now()}
+    # Check if the user's IP is in the database
+    cursor.execute("SELECT * FROM request_counts WHERE ip=%s", (user_ip,))
+    result = cursor.fetchone()
+    if result is None:
+        # If not, insert it into the table with a count of 1
+        cursor.execute("INSERT INTO request_counts (ip, count, timestamp) VALUES (%s, 1, NOW())", (user_ip,))
     else:
         # If it is, increment the count
-        request_counts[user_ip]['count'] += 1
+        count = result[1] + 1
+        cursor.execute("UPDATE request_counts SET count=%s WHERE ip=%s", (count, user_ip))
 
     # Check if the user has made more than 5 requests today
-    if request_counts[user_ip]['count'] > 5:
-        # If they have, return an error message
+    cursor.execute("SELECT COUNT(*) FROM request_counts WHERE ip=%s AND timestamp > DATE_SUB(NOW(), INTERVAL 1 DAY)", (user_ip,))
+    result = cursor.fetchone()
+    if result[0] > 5:
+        # If they have, delete the count from the table
+        cursor.execute("DELETE FROM request_counts WHERE ip=%s AND timestamp < DATE_SUB(NOW(), INTERVAL 1 DAY)", (user_ip,))
         return jsonify({'error': 'You have exceeded the daily request limit.'})
 
     # Get the text to generate an image for
