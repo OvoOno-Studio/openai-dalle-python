@@ -87,7 +87,13 @@
                     // Remove all child nodes of the image container
                     if (imageContainer.firstChild) {
                         while (imageContainer.firstChild) {
-                        imageContainer.removeChild(imageContainer.firstChild);
+                            imageContainer.removeChild(imageContainer.firstChild);
+                        }
+                    }
+
+                    if (linkContainer.firstChild) {
+                        while (linkContainer.firstChild) {
+                            linkContainer.removeChild(linkContainer.firstChild);
                         }
                     }
 
