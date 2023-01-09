@@ -60,12 +60,12 @@ def donate():
 
 @app.route('/generate', methods=['POST', 'GET'])
 def generate():
-    # Connect to the database
-    db = MySQLdb.connect(host="localhost", user="emelrizv_devemel", passwd=f"{dbPW}", db="emelrizv_dalle")
-    cursor = db.cursor()
-
-    # Get the user's IP
-    user_ip = request.remote_addr
+    try:
+        # Connect to the database
+        db = MySQLdb.connect(host="localhost", user="emelrizv_devemel", passwd=f"{dbPW}", db="emelrizv_dalle")
+        cursor = db.cursor()
+    except MySQLdb.Error as e:
+        return jsonify({'error': f'Error connecting to database: {e}'})
 
     # Check if the user's IP is in the database
     cursor.execute("SELECT * FROM request_counts WHERE ip=%s", (user_ip,))
