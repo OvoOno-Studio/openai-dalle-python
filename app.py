@@ -1,8 +1,17 @@
+#----------------------------------------------------------------------------#
+# Imports
+#----------------------------------------------------------------------------#
+from flask import Flask, request, render_template, jsonify
+# from flask.ext.sqlalchemy import SQLAlchemy
+from config import APIKey, InfuraKey, dbPW 
+from web3 import Web3
+from forms import *
 import openai 
 import os
-from web3 import Web3
-from flask import Flask, request, render_template, jsonify
-from config import APIKey, InfuraKey, dbPW 
+
+#----------------------------------------------------------------------------#
+# App Config.
+#----------------------------------------------------------------------------#
 
 # Counts per IP
 request_counts = {}
@@ -12,16 +21,12 @@ web3 = Web3(Web3.HTTPProvider(f"https://mainnet.infura.io/v3/{InfuraKey}"))
 
 # Set the API key
 openai.api_key = str(APIKey)
-
 app = Flask(__name__) 
-
-class Form:
-    def __init__(self):
-        self.text = ""
 
 @app.route('/')
 def index():
-    return render_template('index.html')  
+    form = GenerateForm(request.form)
+    return render_template('pages/placeholder.home.html', form=form)  
 
 @app.route('/donate', methods=['POST'])
 def donate():
@@ -105,5 +110,10 @@ def generate():
     # Return the generated image URL to the client 
     return jsonify({'url': response['data'][0]['url']})
 
+#----------------------------------------------------------------------------#
+# Launch.
+#----------------------------------------------------------------------------#
+
+# Default port:
 if __name__ == '__main__':
     app.run()

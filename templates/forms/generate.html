@@ -1,0 +1,10 @@
+{% extends 'layouts/index.html' %}
+
+{% block content %}
+    <form id="form">
+        <label for="text">Enter text to generate an image:</label><br>
+        <input type="text" id="text" name="text"><br>
+        <!-- Add the reCAPTCHA widget --> 
+        <button class="g-recaptcha" type="submit" data-sitekey="6LdeTdAjAAAAAPGWzX9fKu4lUXMeef2zaAhs-nXy" data-callback='onSubmit' data-action='submit'>Generate</button>
+    </form> 
+{% endblock %}
