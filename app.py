@@ -4,8 +4,8 @@
 from flask import Flask, request, render_template, jsonify
 # from flask.ext.sqlalchemy import SQLAlchemy
 from config import APIKey, InfuraKey, dbPW 
+# from forms import GenerateForm, DonateForm
 from web3 import Web3
-from forms import GenerateForm, DonateForm
 import openai 
 import os
 
