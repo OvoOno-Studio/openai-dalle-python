@@ -6,6 +6,7 @@ from wtforms.validators import DataRequired, Length, Regexp
 class GenerateForm(FlaskForm):
     text = StringField('Text as description that will AI use to generate image:', validators=[DataRequired(), Length(min=2, max=40)])
     recaptcha = RecaptchaField()
+    submit = SubmitField('Generate')
 
 class DonateForm(FlaskForm):
     wallet_address = StringField('Wallet Address', validators=[DataRequired(), Length(min=42, max=42), Regexp('^0x[a-fA-F0-9]{40}$', message='Enter a valid Ethereum address')])
