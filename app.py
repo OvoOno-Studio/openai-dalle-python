@@ -4,7 +4,7 @@
 from flask import Flask, request, render_template, jsonify
 # from flask.ext.sqlalchemy import SQLAlchemy
 from config import APIKey, InfuraKey, dbPW 
-# from forms.forms import GenerateForm, DonateForm
+from forms.forms import GenerateForm, DonateForm
 from web3 import Web3
 import openai 
 import os
@@ -23,7 +23,7 @@ web3 = Web3(Web3.HTTPProvider(f"https://mainnet.infura.io/v3/{InfuraKey}"))
 openai.api_key = str(APIKey)
 app = Flask(__name__) 
 
-@app.route('/')
+@app.route('/', methods=('GET', 'POST'))
 def index():  
     return render_template('pages/placeholder.home.html')
 
