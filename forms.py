@@ -1,6 +1,6 @@
 from flask_wtf import Form
 from wtforms import TextField
-from wtforms.validators import DataRequired, Length
+from wtforms.validators import DataRequired, Length, StringField, DecimalField, SubmitField
 
 # Set your Form classes below:
 class GenerateForm(Form):
