@@ -25,8 +25,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    form = GenerateForm(request.form)
-    return render_template('templates/pages/placeholder.home.html', form=form)  
+    # form = GenerateForm(request.form)
+    return render_template('templates/pages/placeholder.home.html')  
 
 @app.route('/donate', methods=['POST'])
 def donate():
