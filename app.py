@@ -2,6 +2,11 @@
 # Imports
 #----------------------------------------------------------------------------#
 from flask import Flask, request, redirect, url_for, render_template, jsonify
+from wtforms import TextAreaField
+from wtforms.validators import DataRequired
+
+from flask_wtf import FlaskForm
+from flask_wtf.recaptcha import RecaptchaField
 # from flask.ext.sqlalchemy import SQLAlchemy
 from config import APIKey, InfuraKey, dbPW 
 # from forms.forms import *
@@ -23,10 +28,15 @@ web3 = Web3(Web3.HTTPProvider(f"https://mainnet.infura.io/v3/{InfuraKey}"))
 openai.api_key = str(APIKey)
 app = Flask(__name__) 
 
+# Set your Form classes below:
+class GenerateForm(FlaskForm):
+    text = TextField('Text', validators=[DataRequired(), Length(min=2, max=40)])
+    recaptcha = RecaptchaField()
+
 @app.route('/', methods=('GET', 'POST'))
 def index(form=None):  
-    #if form is None:
-    #   form = GenerateForm()
+    if form is None:
+       form = GenerateForm()
     return render_template('pages/placeholder.home.html')
 
 @app.route('/donate', methods=['POST'])
