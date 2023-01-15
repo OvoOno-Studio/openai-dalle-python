@@ -28,7 +28,7 @@ web3 = Web3(Web3.HTTPProvider(f"https://mainnet.infura.io/v3/{InfuraKey}"))
 openai.api_key = str(APIKey)
 app = Flask(__name__) 
 
-# Set your Form classes below:
+# GenerateForm class
 class GenerateForm(FlaskForm):
     text = TextField('Text', validators=[DataRequired(), Length(min=2, max=40)])
     recaptcha = RecaptchaField()
@@ -37,7 +37,7 @@ class GenerateForm(FlaskForm):
 def index(form=None):  
     if form is None:
        form = GenerateForm()
-    return render_template('pages/placeholder.home.html')
+    return render_template('pages/placeholder.home.html', form=form)
 
 @app.route('/donate', methods=['POST'])
 def donate():
