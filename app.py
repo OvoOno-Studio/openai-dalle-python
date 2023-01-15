@@ -4,7 +4,7 @@
 from flask import Flask, request, redirect, url_for, render_template, jsonify
 # from flask.ext.sqlalchemy import SQLAlchemy
 from config import APIKey, InfuraKey, dbPW 
-from forms import GenerateForm
+# from forms.forms import *
 from web3 import Web3
 import openai 
 import os
@@ -27,7 +27,7 @@ app = Flask(__name__)
 def index(form=None):  
     if form is None:
         form = GenerateForm()
-    return render_template('pages/placeholder.home.html', form=form)
+    return render_template('pages/placeholder.home.html')
 
 @app.route('/donate', methods=['POST'])
 def donate():
