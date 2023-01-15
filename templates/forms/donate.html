@@ -1,8 +1,8 @@
 {% block content %}
-<form method="post" action="{{ url_for('donate') }}">
-    {{ form2.csrf_token }}
-    {{ form2.wallet_address.label }} {{ form2.wallet_address() }}
-    {{ form2.amount.label }} {{ form2.amount() }}
-    {{ form2.submit() }}
-</form>
+    <form method="post" action="{{ url_for('donate') }}">
+        {{ form2.csrf_token }}
+        {{ form2.wallet_address.label }} {{ form2.wallet_address() }}
+        {{ form2.amount.label }} {{ form2.amount() }}
+        {{ form2.submit() }}
+    </form>
 {% endblock %}
