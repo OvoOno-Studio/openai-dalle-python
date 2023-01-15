@@ -1,10 +1,10 @@
 #----------------------------------------------------------------------------#
 # Imports
 #----------------------------------------------------------------------------#
-from flask import Flask, request, render_template, jsonify
+from flask import Flask, request, redirect, url_for, render_template, jsonify
 # from flask.ext.sqlalchemy import SQLAlchemy
 from config import APIKey, InfuraKey, dbPW 
-# from forms.forms import GenerateForm, DonateForm
+from forms.forms import *
 from web3 import Web3
 import openai 
 import os
@@ -24,8 +24,10 @@ openai.api_key = str(APIKey)
 app = Flask(__name__) 
 
 @app.route('/', methods=('GET', 'POST'))
-def index():  
-    return render_template('pages/placeholder.home.html')
+def index(form=None):  
+    if form is None:
+        form = GenerateForm()
+    return render_template('pages/placeholder.home.html', form=form)
 
 @app.route('/donate', methods=['POST'])
 def donate():
