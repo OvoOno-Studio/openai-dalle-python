@@ -1,8 +1,6 @@
-{% extends 'layouts/main.html' %}
 
-{% block generate-form %} 
 <form id="form" method="post" action="{{url_for('generate')}}">
-    {{ form.hidden_tag() }}
+    {{ form.csrf_token }}
     <div class="form-group">
         {{ form.text.label }} {{ form.text(class="form-control") }}
         {% for error in form.text.errors %}
@@ -14,4 +12,3 @@
         <button class="g-recaptcha" type="submit" data-sitekey="6LdeTdAjAAAAAPGWzX9fKu4lUXMeef2zaAhs-nXy" data-callback='onSubmit' data-action='submit'>Generate</button>
     </div>
 </form>
-{% endblock %}

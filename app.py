@@ -4,8 +4,8 @@
 from flask import Flask, request, redirect, url_for, render_template, jsonify 
 
 # from flask.ext.sqlalchemy import SQLAlchemy
-from config import APIKey, InfuraKey, dbPW 
-# from forms.forms import *
+from config import APIKey, InfuraKey, dbPW, SecretKey 
+from forms.forms import *
 from web3 import Web3
 import openai 
 import os
@@ -22,11 +22,14 @@ web3 = Web3(Web3.HTTPProvider(f"https://mainnet.infura.io/v3/{InfuraKey}"))
 
 # Set the API key
 openai.api_key = str(APIKey)
-app = Flask(__name__)  
+app = Flask(__name__)
+app.config['SECRET_KEY'] = SecretKey
 
 @app.route('/', methods=('GET', 'POST'))
 def index(form=None):   
-    return render_template('pages/placeholder.home.html')
+    if form is None:
+        form = GenerateForm()
+    return render_template('pages/placeholder.home.html', form=form)
 
 @app.route('/donate', methods=['POST'])
 def donate():
@@ -65,7 +68,7 @@ def donate():
 @app.route('/generate', methods=['POST', 'GET'])
 def generate():
     # Get the text to generate an image for
-    text = request.data
+    text = request.form['text']
     # Set the prompt for the image 
     prompt = str(text)
     model = "image-alpha-001"
