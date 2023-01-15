@@ -28,7 +28,7 @@ app.config['SECRET_KEY'] = SecretKey
 @app.route('/', methods=('GET', 'POST'))
 def index(form=None):   
     if form is None:
-        form = GenerateForm()
+        form = GenerateForm(request.form)
     return render_template('pages/placeholder.home.html', form=form)
 
 @app.route('/donate', methods=['POST'])
@@ -93,4 +93,4 @@ def generate():
 
 # Default port:
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
