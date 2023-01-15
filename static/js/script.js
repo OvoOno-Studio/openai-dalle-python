@@ -1,6 +1,8 @@
 const form = document.getElementById('form');
+console.log('works');
 function onSubmit(){ 
-    event.preventDefault();          
+    event.preventDefault();        
+    console.log('works also');  
     // Execute the reCAPTCHA verification
     grecaptcha.ready(function() {
         grecaptcha.execute('6LdeTdAjAAAAAPGWzX9fKu4lUXMeef2zaAhs-nXy', { action: 'submit' }).then(function(token) {
@@ -56,4 +58,4 @@ function onSubmit(){
         });
     });
 };
-window.onSubmit = onSubmit;
+window.onSubmit = onSubmit; 
