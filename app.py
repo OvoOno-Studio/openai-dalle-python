@@ -4,7 +4,7 @@
 from flask import Flask, request, redirect, url_for, render_template, jsonify
 # from flask.ext.sqlalchemy import SQLAlchemy
 from config import APIKey, InfuraKey, dbPW 
-from forms.forms import *
+from forms import GenerateForm
 from web3 import Web3
 import openai 
 import os
