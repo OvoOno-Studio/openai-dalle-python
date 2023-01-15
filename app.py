@@ -34,10 +34,8 @@ class GenerateForm(FlaskForm):
     recaptcha = RecaptchaField()
 
 @app.route('/', methods=('GET', 'POST'))
-def index(form=None):  
-    if form is None:
-       form = GenerateForm()
-    return render_template('pages/placeholder.home.html', form=form)
+def index(form=None):   
+    return render_template('pages/placeholder.home.html')
 
 @app.route('/donate', methods=['POST'])
 def donate():
