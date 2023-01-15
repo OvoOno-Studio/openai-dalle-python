@@ -1,12 +1,8 @@
 #----------------------------------------------------------------------------#
 # Imports
 #----------------------------------------------------------------------------#
-from flask import Flask, request, redirect, url_for, render_template, jsonify
-from wtforms import TextAreaField
-from wtforms.validators import DataRequired
+from flask import Flask, request, redirect, url_for, render_template, jsonify 
 
-from flask_wtf import FlaskForm
-from flask_wtf.recaptcha import RecaptchaField
 # from flask.ext.sqlalchemy import SQLAlchemy
 from config import APIKey, InfuraKey, dbPW 
 # from forms.forms import *
@@ -26,12 +22,7 @@ web3 = Web3(Web3.HTTPProvider(f"https://mainnet.infura.io/v3/{InfuraKey}"))
 
 # Set the API key
 openai.api_key = str(APIKey)
-app = Flask(__name__) 
-
-# GenerateForm class
-class GenerateForm(FlaskForm):
-    text = TextField('Text', validators=[DataRequired(), Length(min=2, max=40)])
-    recaptcha = RecaptchaField()
+app = Flask(__name__)  
 
 @app.route('/', methods=('GET', 'POST'))
 def index(form=None):   
