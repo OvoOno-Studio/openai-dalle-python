@@ -1,5 +1,5 @@
 
-<form id="form" method="post" action="{{url_for('generate')}}" onsubmit="onSubmit()">
+<form id="form" method="post" action="{{url_for('generate')}}">
     {{ form.csrf_token }}
     <div class="form-group">
         {{ form.text.label }} {{ form.text(class="form-control") }}

@@ -55,4 +55,5 @@ function onSubmit(){
             });
         });
     });
-}; 
+};
+window.onSubmit = onSubmit;

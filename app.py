@@ -68,7 +68,7 @@ def donate():
 @app.route('/generate', methods=['POST', 'GET'])
 def generate():
     # Get the text to generate an image for
-    text = request.form['text']
+    text = request.data
     # Set the prompt for the image 
     prompt = str(text)
     model = "image-alpha-001"
