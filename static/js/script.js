@@ -1,9 +1,7 @@
 (function() {
-    const form = document.getElementById('form');
-    console.log('works');
+    const form = document.getElementById('generate-form'); 
     function onSubmit(){ 
-        event.preventDefault();        
-        console.log('works also');  
+        event.preventDefault();   
         // Execute the reCAPTCHA verification
         grecaptcha.ready(function() {
             grecaptcha.execute('6LdeTdAjAAAAAPGWzX9fKu4lUXMeef2zaAhs-nXy', { action: 'submit' }).then(function(token) {
