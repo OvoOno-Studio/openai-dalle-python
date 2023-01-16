@@ -9,8 +9,10 @@
                 const text = form.elements['text'].value;
                 const imageContainer = document.getElementById('image-container');
                 const linkContainer = document.getElementById('link-container');
-
+                // Show loader on submiting form
                 document.getElementById('loader').style.display = 'block';
+                // Disable submit button of form while fetching
+                document.getElementById('g-recaptcha-button').disabled = true;
                 // Remove all child nodes of the image container
                 if (imageContainer.firstChild) {
                     while (imageContainer.firstChild) {
@@ -40,6 +42,7 @@
                     return response.json();
                 })
                 .then(data => {
+                    // Creating new elements for link and generated image
                     const image = document.createElement('img');
                     const url = document.createElement('a');
                     image.src = data.url;
@@ -48,7 +51,10 @@
                     url.target = '_blank';
                     imageContainer.appendChild(image);
                     linkContainer.appendChild(url);
+                    // Hide loader on image loading
                     document.getElementById('loader').style.display = 'none';
+                    // Enable submit form button
+                    document.getElementById('g-recaptcha-button').disabled = false;
                 })
                 .catch(error => {
                     console.error(error);
