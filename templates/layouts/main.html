@@ -12,11 +12,14 @@
     </script>
      <!-- Google AdSense -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6900518000418542" crossorigin="anonymous"></script>
-    <title>{% block title %}{% endblock %}</title>
+    <title> {% block title %}{% endblock %} </title>
     <meta name="keywords" content="image generator, DALLE-E 2, photorealistic images, text prompts, creativity">
     <meta name="description" content="Transform your ideas into stunning, photorealistic images with the DALLE-E 2 Image Generator. Simply enter a text prompt describing the image you want to create, and let the power of the DALLE-E 2 API do the rest. Whether you're an artist, a designer, or just looking for a fun way to express your creativity, our image generator has something for you.">
     <!-- Link to Milligram CSS file hosted on a CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.min.css" integrity="sha512-xiunq9hpKsIcz42zt0o2vCo34xV0j6Ny8hgEylN3XBglZDtTZ2nwnqF/Z/TTCc18sGdvCjbFInNd++6q3J0N6g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Link to main.css and main.responsive.css files -->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/main.responsive.css')}}">
 </head>
 <body>
     <div class="container">
