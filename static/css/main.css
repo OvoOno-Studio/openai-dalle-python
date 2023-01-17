@@ -10,7 +10,56 @@
 * Main elements
 ****************************************************************************/
 
+@font-face {
+    font-family: 'Roboto';
+    src: url("../fonts/Roboto-Regular.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/Montserrat-Regular.ttf') format('truetype');
+}
+
 /* Main elements end */
+body {
+    background-color: #5E3A71;
+    color: #F5F5F5; /* Best font color to go with dark purple background */
+    font-family: 'Roboto', sans-serif; /* Change font for heading and paragraphs */
+    font-size: 16px; /* Adjust font size for body text */
+    margin: 0px;
+    margin-top: 10px;
+}
+
+h1, h2, h3 {
+    font-family: 'Montserrat', sans-serif; /* Change font for headings */
+    font-weight: 600; /* Make headings bold */
+}
+
+h1 {
+    font-size: 36px; /* Adjust font size for h1 */
+    color: #F5D042;
+}
+
+h2 {
+    font-size: 28px; /* Adjust font size for h2 */
+    color: #f1e4f4;
+}
+
+h3 {
+    font-size: 20px; /* Adjust font size for h3 */
+}
+
+footer {
+    background-color: #1e1e1e;
+    color: #fff;
+    padding: 30px;
+    text-align: center;
+} 
+
+footer p {
+    margin-top: 10px;
+    font-size: 14px;
+} 
 
 
 /*****************************************************************************

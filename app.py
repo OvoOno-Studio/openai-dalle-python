@@ -7,6 +7,7 @@ from config import APIKey, InfuraKey, dbPW, SecretKey
 from forms.forms import *
 from web3 import Web3
 import openai   
+import qrcode 
 
 #----------------------------------------------------------------------------#
 # App Config.
@@ -24,10 +25,10 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = SecretKey
 
 @app.route('/', methods=('GET', 'POST'))
-def index():   
+def index():
     form = GenerateForm(request.form)
     donate_form = DonateForm(request.form)
-    return render_template('pages/placeholder.home.html', form=form, donate_form=donate_form)
+    return render_template('pages/placeholder.home.html', form=form, donate_form=donate_form) 
 
 @app.route('/donate', methods=['POST'])
 def donate():
