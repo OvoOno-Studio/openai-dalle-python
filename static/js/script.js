@@ -8,9 +8,7 @@
                 // Add the reCAPTCHA token to the request header
                 const text = form.elements['text'].value;
                 const imageContainer = document.getElementById('image-container');
-                const linkContainer = document.getElementById('link-container');
-                
-                document.getElementById('hide').style.display = 'block';
+                const linkContainer = document.getElementById('link-container'); 
                 // Show loader on submiting form
                 document.getElementById('loader').style.display = 'block';
                 // Disable submit button of form while fetching

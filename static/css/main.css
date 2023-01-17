@@ -67,3 +67,19 @@ footer p {
 ****************************************************************************/
 
 /* Various other styles end */
+
+.text-right {
+    text-align: right;
+}
+
+.text-center {
+    text-align: right;
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
