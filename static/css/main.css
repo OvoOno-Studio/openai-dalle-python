@@ -49,6 +49,17 @@ h3 {
     font-size: 20px; /* Adjust font size for h3 */
 }
 
+div#image-container {
+    text-align: center;
+}
+
+#link-container a{
+    color: #f1e4f4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 footer {
     background-color: #1e1e1e;
     color: #fff;
