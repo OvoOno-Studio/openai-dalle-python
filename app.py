@@ -30,14 +30,12 @@ def generate():
     # Get the text to generate an image for
     text = request.data
     # Set the prompt for the image 
-    prompt = str(text)
-    model = "image-alpha-001"
+    prompt = str(text) 
     num_images = 1
     size = "1024x1024"
     response_format = "url"
     # Generate the image
-    response = openai.Image.create( 
-        model=model,
+    response = openai.Image.create(  
         prompt=prompt,
         n=num_images,
         size=size,
