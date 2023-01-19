@@ -24,7 +24,7 @@
 <body>
     <div class="container"> 
         <div class="row">
-            <h1>{% block heading %} {% endblock %}</h1> 
+            <h1>{% block heading %}{% endblock %}</h1> 
         </div>
         <div class="row">
             {% block content %}{% endblock %}
@@ -70,20 +70,9 @@
             </div>
         </div>
     </div> 
-    <footer id="footer" class="dark-theme">
-        <div class="container">
-            <div class="row">
-                <div class="column">
-                    <p> Powered by <a href="https://openai.com/api/">OpenAI</a>, this application harnesses the latest in machine learning technology to bring your imagination to life.</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="column">
-                    <p>Copyright © 2023 DALLE-E 2 Image Generator. All rights reserved.</p>
-                </div>
-            </div>
-        </div>
-    </footer>
+
+    {% include 'partials/_footer.html' %}
+    
     <script type="text/javascript" src="https://www.google.com/recaptcha/api.js?render=6LdeTdAjAAAAAPGWzX9fKu4lUXMeef2zaAhs-nXy"></script>  
     <script type="text/javascript" src="{{ url_for('static', filename = 'js/script.js') }}"></script>
 </body>
