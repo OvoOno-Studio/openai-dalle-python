@@ -2,6 +2,7 @@
 # Imports
 #----------------------------------------------------------------------------#
 from flask import Flask, request, send_from_directory, render_template, jsonify 
+from flask_wtf.csrf import CSRFProtect
 # from flask.ext.sqlalchemy import SQLAlchemy
 from config import APIKey, dbPW, SecretKey 
 from forms.forms import * 
@@ -18,6 +19,9 @@ openai.api_key = str(APIKey)  # Set the API key
 app = Flask(__name__)
 app.config['SECRET_KEY'] = SecretKey # Secret Key
 app.config['MAX_CONTENT_LENGTH'] = 4 * 1024 * 1024  # 4MB max-limit.
+app.config['SERVER_NAME'] = 'dalle.emelrizvanovic.com'
+app.config['SESSION_COOKIE_DOMAIN'] = False
+
 csrf.init_app(app)
 
 @app.route('/', methods=('GET', 'POST'))
