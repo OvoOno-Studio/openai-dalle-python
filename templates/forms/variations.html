@@ -1,7 +1,7 @@
 <h2>How to Use the Variations Generator</h2> 
 <p> Upload the desired image in the input field and click the 'Generate' button. Give it a try and see what kind of amazing images you can create! </p>
 <small>The input image must be a square PNG image less than 4MB in size.</small>
-<form id="variations-form" method="post" action="{{url_for('image_variations')}}" data-form='{{ data.form }}' data-endpoint='{{ data.endpoint }}' data-type='{{ data.type }}'>
+<form id="variations-form" method="post" action="{{url_for('image_variations')}}" enctype="multipart/form-data">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
     <div class="form-group">
         {{ form.photo.label }} {{ form.photo(class="form-control-file") }}

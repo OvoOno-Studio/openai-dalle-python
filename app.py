@@ -2,6 +2,7 @@
 # Imports
 #----------------------------------------------------------------------------#
 from flask import Flask, request, send_from_directory, render_template, jsonify 
+from flask_uploads import UploadSet, configure_uploads, IMAGES
 from flask_wtf.csrf import CSRFProtect
 # from flask.ext.sqlalchemy import SQLAlchemy
 from config import APIKey, dbPW, SecretKey 
@@ -14,15 +15,20 @@ import os
 #----------------------------------------------------------------------------# 
 
 csrf = CSRFProtect()
-
 openai.api_key = str(APIKey)  # Set the API key
-app = Flask(__name__)
+basedir = os.path.abspath(os.path.dirname(__file__))
+app = Flask(__name__) # Init app
+# Application Configuration
 app.config['SECRET_KEY'] = SecretKey # Secret Key
 app.config['MAX_CONTENT_LENGTH'] = 4 * 1024 * 1024  # 4MB max-limit.
 app.config['SERVER_NAME'] = 'dalle.emelrizvanovic.com'
 app.config['SESSION_COOKIE_DOMAIN'] = False
+app.config['UPLOADED_PHOTOS_DEST'] = os.path.join(basedir, 'static/uploads')
 
 csrf.init_app(app)
+
+photos = UploadSet('photos', IMAGES)
+configure_uploads(app, photos)
 
 @app.route('/', methods=('GET', 'POST'))
 def index():
@@ -31,7 +37,6 @@ def index():
     data = { 'form': 'generate-form', 'endpoint': '/generate', 'type': 'text/plain'}
     return render_template('pages/placeholder.home.html', form=form, donate_form=donate_form, data=data) 
  
-@app.route('/generate', methods=['POST', 'GET'])
 def generate(): 
     text = request.data # Get the text to generate an image for
     prompt = str(text) # Set the prompt for the image   
@@ -55,12 +60,17 @@ def image_variations():
     return render_template('pages/placeholder.variations.html', form=form, data=data)
 
 def image_variations(): 
-    image = request.data # Get the uploaded image  
+    form = VariationsForm(request.form)
+    if form.validate_on_submit():
+        filename = photos.save(form.photo.data)
+        file_url = photos.url(filename)
+    else:
+        file_url = None
     n = 1 # Number of images 
     size = "1024x1024" # Resolution of the new image
     # Generate the variation of the uploaded image
     response = openai.Image.create_variation(
-        image=open(image, "rb"),
+        image=file_url,
         n=n,
         size=size
     )
