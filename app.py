@@ -36,7 +36,8 @@ def index():
     donate_form = DonateForm(request.form)
     data = { 'form': 'generate-form', 'endpoint': '/generate', 'type': 'text/plain'}
     return render_template('pages/placeholder.home.html', form=form, donate_form=donate_form, data=data) 
- 
+
+@app.route('/generate', methods=['POST', 'GET'])
 def generate(): 
     text = request.data # Get the text to generate an image for
     prompt = str(text) # Set the prompt for the image   
