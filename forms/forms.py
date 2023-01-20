@@ -1,8 +1,7 @@
 from flask_wtf import FlaskForm, RecaptchaField
 from wtforms import StringField, DecimalField, SubmitField
 from flask_wtf.file import FileField, FileRequired, FileAllowed
-from wtforms.validators import DataRequired, Length, Regexp
-from flask_wtf.csrf import CSRFProtect
+from wtforms.validators import DataRequired, Length, Regexp 
 
 # GenerateForm class for generating AI images
 class GenerateForm(FlaskForm):
