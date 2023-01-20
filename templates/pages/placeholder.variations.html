@@ -1,0 +1,32 @@
+{% extends 'layouts/variations.html' %} 
+
+{% block title %} DALLE-E 2: The Ultimate Image Generator {% endblock %}
+
+{% block heading %} DALLE-E 2 Image Variations Generator {% endblock %}
+
+{% block content %} 
+    <div class="column column-30">  
+        <p> With our web application, you can easily turn your ideas into stunning, photorealistic images with just a few simple text prompts. The DALLE-E 2 API is incredibly powerful and can help you with:</p>
+        <ul>
+            <li>Creating artwork and designs</li>
+            <li>Expressing your creativity</li>
+            <li>Generating ideas for projects</li>
+            <li>Bringing your imagination to life.</li>
+        </ul>
+        <p>Whatever your goals may be, our image generator has something for you. Give it a try and see the magic happen!</p> 
+    </div>
+    <div class="column column-30"> 
+        <img src="{{url_for('static', filename='images/home03.png')}}" alt="A robot testing application.">      
+        <blockquote>
+            <span class="pln"></span>
+            <p><em><span class="pln">"A robot testing application."</span></em></p>
+        </blockquote>
+    </div>
+    <div class="column column-30"> 
+        <img src="{{url_for('static', filename='images/home04.png')}}" alt="A pyramid in anime style.">
+        <blockquote>
+            <span class="pln"></span>
+            <p><em><span class="pln">"show me the future"</span></em></p>
+        </blockquote> 
+    </div>
+{% endblock %}

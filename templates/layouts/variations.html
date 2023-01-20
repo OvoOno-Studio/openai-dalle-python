@@ -1,6 +1,5 @@
 {% include 'partials/_head.html' %}
-<body>
-    <div class="container"> 
+    <div class="container">
         <div class="row">
             <h1>{% block heading %}{% endblock %}</h1> 
         </div>
@@ -9,7 +8,7 @@
         </div>
         <div class="row">
             <div class="column column-50">  
-                {% include 'forms/generate.html' %}
+                {% include 'forms/variations.html' %}
             </div>  
             <div class="column column-50"> 
                 {% include 'forms/donate.html' %}
@@ -47,5 +46,6 @@
                 </script>
             </div>
         </div>
-    </div> 
-{% include 'partials/_footer.html' %}
+    </div>
+
+{% include 'partials/_footer.html' %} 

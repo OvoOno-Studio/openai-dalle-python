@@ -1,6 +1,6 @@
 <h2>How to Use the Image Generator</h2> 
 <p> Using our image generator is easy! Simply enter a text prompt in the input field and click the 'Generate' button. <br> You can be as specific or as general as you like in your prompt - the DALLE-E 2 API is capable of generating a wide range of images based on your descriptions. Give it a try and see what kind of amazing images you can create! </p>
-<form id="generate-form" method="post" action="{{url_for('generate')}}">
+<form id="generate-form" method="post" action="{{url_for('generate')}}" data-form='{{ data.form }}' data-endpoint='{{ data.endpoint }}' data-type='{{ data.type }}'>
     {{ form.csrf_token }}
     <div class="form-group">
         {{ form.text.label }} {{ form.text(class="form-control") }}

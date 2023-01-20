@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------#
 # Imports
 #----------------------------------------------------------------------------#
-from flask import Flask, request, redirect, url_for, render_template, jsonify 
+from flask import Flask, request, send_from_directory, render_template, jsonify 
 # from flask.ext.sqlalchemy import SQLAlchemy
 from config import APIKey, dbPW, SecretKey 
 from forms.forms import * 
@@ -12,16 +12,20 @@ import os
 # App Config.
 #----------------------------------------------------------------------------# 
 
+csrf = CSRFProtect()
+
 openai.api_key = str(APIKey)  # Set the API key
 app = Flask(__name__)
 app.config['SECRET_KEY'] = SecretKey # Secret Key
 app.config['MAX_CONTENT_LENGTH'] = 4 * 1024 * 1024  # 4MB max-limit.
+csrf.init_app(app)
 
 @app.route('/', methods=('GET', 'POST'))
 def index():
     form = GenerateForm(request.form)
     donate_form = DonateForm(request.form)
-    return render_template('pages/placeholder.home.html', form=form, donate_form=donate_form) 
+    data = { 'form': 'generate-form', 'endpoint': '/generate', 'type': 'text/plain'}
+    return render_template('pages/placeholder.home.html', form=form, donate_form=donate_form, data=data) 
  
 @app.route('/generate', methods=['POST', 'GET'])
 def generate(): 
@@ -41,15 +45,12 @@ def generate():
     return jsonify({'url': response['data'][0]['url']})
 
 @app.route('/image-variations', methods=['POST', 'GET'])
-def index():
+def image_variations():
     form = VariationsForm(request.form)
-    if form.validate_on_submit():
-        assets_dir = os.path.join(
-            os.path.dirname(app.instance_path), 'static/uploads'
-        )
-    return render_template('pages/placeholder.variations.html')
+    data = { 'form': 'variations-form', 'endpoint': '/image-variations', 'type': 'image/png'}
+    return render_template('pages/placeholder.variations.html', form=form, data=data)
 
-def generate_image_variations(): 
+def image_variations(): 
     image = request.data # Get the uploaded image  
     n = 1 # Number of images 
     size = "1024x1024" # Resolution of the new image
@@ -61,6 +62,11 @@ def generate_image_variations():
     )
     # Return variation of the uploaded image 
     return jsonify({'url': response['data'][0]['url']})
+
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsfot.icon')
+
 
 #----------------------------------------------------------------------------#
 # Launch.
