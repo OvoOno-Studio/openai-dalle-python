@@ -1,7 +1,9 @@
 (function() {
-    const form = document.getElementById('generate-form'); 
-    function onSubmit(){ 
-        event.preventDefault();   
+   console.log('Logging... Welcome.');
+   console.log(form)
+
+   function onSubmit(form, endpoint, type){  
+        event.preventDefault();
         // Execute the reCAPTCHA verification
         grecaptcha.ready(function() {
             grecaptcha.execute('6LdeTdAjAAAAAPGWzX9fKu4lUXMeef2zaAhs-nXy', { action: 'submit' }).then(function(token) {
@@ -26,11 +28,11 @@
                     }
                 }
 
-                fetch('/generate', {
+                fetch(endpoint, {
                     method: 'POST',
                     headers: {
-                    'Content-Type': 'text/plain',
-                    'x-recaptcha-token': token,
+                        'Content-Type': type, // text-plain
+                        'x-recaptcha-token': token,
                     },
                     body: text,
                 })
@@ -61,7 +63,9 @@
                     document.getElementById('loader').style.display = 'none';
                 });
             });
-        });
+        }); 
     };
-    window.onSubmit = onSubmit;
+
+    window.onsubmit = onSubmit;
 }).call(this);
+

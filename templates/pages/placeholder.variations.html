@@ -1,8 +1,8 @@
-{% extends 'layouts/main.html' %} 
+{% extends 'layouts/variations.html' %} 
 
 {% block title %} DALLE-E 2: The Ultimate Image Generator {% endblock %}
 
-{% block heading %} Welcome to the DALLE-E 2 Image Generator {% endblock %}
+{% block heading %} DALLE-E 2 Image Variations Generator {% endblock %}
 
 {% block content %} 
     <div class="column column-30">  
@@ -23,10 +23,10 @@
         </blockquote>
     </div>
     <div class="column column-30"> 
-        <img src="{{url_for('static', filename='images/home01.png')}}" alt="An animated pyramid.">
+        <img src="{{url_for('static', filename='images/home04.png')}}" alt="A pyramid in anime style.">
         <blockquote>
             <span class="pln"></span>
-            <p><em><span class="pln">"An animated pyramid."</span></em></p>
+            <p><em><span class="pln">"show me the future"</span></em></p>
         </blockquote> 
     </div>
 {% endblock %}

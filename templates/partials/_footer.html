@@ -1,14 +1,24 @@
-<footer id="footer" class="dark-theme">
-    <div class="container">
-        <div class="row">
-            <div class="column">
-                <p> Powered by <a href="https://openai.com/api/">OpenAI</a>, this application harnesses the latest in machine learning technology to bring your imagination to life.</p>
+    <script>
+        var data = {{ data|tojson|safe }};
+        const form = data.form; 
+        const endpoint = data.endpoint // or /variations
+        const type = data.type // text/plain 
+    </script>
+    <script type="text/javascript" src="https://www.google.com/recaptcha/api.js?render=6LdeTdAjAAAAAPGWzX9fKu4lUXMeef2zaAhs-nXy"></script>  
+    <script type="text/javascript" src="{{ url_for('static', filename = 'js/script.js') }}"></script>
+    <footer id="footer" class="dark-theme">
+        <div class="container">
+            <div class="row">
+                <div class="column">
+                    <p> Powered by <a href="https://openai.com/api/">OpenAI</a>, this application harnesses the latest in machine learning technology to bring your imagination to life.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <p>Copyright © 2023 DALLE-E 2 Image Generator. All rights reserved.</p>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="column">
-                <p>Copyright © 2023 DALLE-E 2 Image Generator. All rights reserved.</p>
-            </div>
-        </div>
-    </div>
-</footer>
+    </footer>
+</body>
+</html>
