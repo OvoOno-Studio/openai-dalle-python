@@ -1,7 +1,7 @@
 (function() {
    console.log('Logging... Welcome.');
    console.log('Form ID: ' + form);
-   console.log('Endpoint: '+ endpoint);
+   console.log('Endpoint: ' + endpoint);
    console.log('Type: ' + type);
 
    function onSubmit(){  
