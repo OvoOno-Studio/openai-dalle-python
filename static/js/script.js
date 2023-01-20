@@ -68,6 +68,6 @@
         }); 
     };
 
-    window.onsubmit = onSubmit;
+    window.onSubmit = onSubmit;
 }).call(this);
 
