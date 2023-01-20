@@ -12,7 +12,8 @@
                  // Add the reCAPTCHA token to the request header
                  const f = document.getElementById(form);
                  const csrf_token = document.getElementsByName("csrf_token")[0].value;
-                 f === 'generate-form' && endpoint === '/generate' ? data = f.elements['text'].value : data = f.elements['photo'].files[0]; 
+
+                 form === 'generate-form' && endpoint === '/generate' ? data = f.elements['text'].value : data = f.elements['photo'].files[0]; 
  
                  const imageContainer = document.getElementById('image-container');
                  const linkContainer = document.getElementById('link-container'); 
