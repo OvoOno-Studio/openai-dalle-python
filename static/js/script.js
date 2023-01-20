@@ -14,6 +14,12 @@
                  const csrf_token = document.getElementsByName("csrf_token")[0].value;
 
                  form === 'generate-form' && endpoint === '/generate' ? data = f.elements['text'].value : data = f.elements['photo'].files[0]; 
+
+                if (endpoint === '/image-variations') {
+                    formData = new FormData();
+                    formData.append('photo', data);
+                    data = formData;
+                }
  
                  const imageContainer = document.getElementById('image-container');
                  const linkContainer = document.getElementById('link-container'); 

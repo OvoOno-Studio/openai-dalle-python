@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------#
 # Imports
 #----------------------------------------------------------------------------#
-from flask import Flask, request, send_from_directory, render_template, jsonify 
+from flask import Flask, request, send_from_directory, render_template, jsonify, flash 
 from flask_uploads import UploadSet, configure_uploads, IMAGES
 from flask_wtf.csrf import CSRFProtect
 # from flask.ext.sqlalchemy import SQLAlchemy
@@ -61,17 +61,22 @@ def image_variations():
     return render_template('pages/placeholder.variations.html', form=form, data=data)
 
 def image_variations(): 
-    form = VariationsForm(request.form)
-    if form.validate_on_submit():
-        filename = photos.save(form.photo.data)
-        file_url = photos.url(filename)
-    else:
-        file_url = None
+    # form = VariationsForm(request.form)
+    # if form.validate_on_submit():
+    #     filename = photos.save(form.photo.data)
+    #     file_url = photos.url(filename)
+    # else:
+    #     file_url = None
+    photo = request.files['photo'] 
+
+    if photo.content_length > 4*1024*1024:
+        flash('Error: File size exceeds 4MB') 
+
     n = 1 # Number of images 
     size = "1024x1024" # Resolution of the new image
     # Generate the variation of the uploaded image
     response = openai.Image.create_variation(
-        image=file_url,
+        image=photo,
         n=n,
         size=size
     )
