@@ -10,7 +10,8 @@
         grecaptcha.ready(function() {
             grecaptcha.execute('6LdeTdAjAAAAAPGWzX9fKu4lUXMeef2zaAhs-nXy', { action: 'submit' }).then(function(token) {
                 // Add the reCAPTCHA token to the request header
-                const text = form.elements['text'].value;
+                const f = document.getElementById(form);
+                const text = f.elements['text'].value;
                 const imageContainer = document.getElementById('image-container');
                 const linkContainer = document.getElementById('link-container'); 
                 // Show loader on submiting form
