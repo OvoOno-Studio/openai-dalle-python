@@ -60,6 +60,10 @@ def image_variations():
     data = { 'form': 'variations-form', 'endpoint': '/image-variations', 'type': 'image/png'}
     return render_template('pages/placeholder.variations.html', form=form, data=data)
 
+@app.route('/privacy', methods=['POST', 'GET'])
+def privacy():
+    return render_template('pages/placeholder.privacy.html')
+
 def image_variations(): 
     # form = VariationsForm(request.form)
     # if form.validate_on_submit():
