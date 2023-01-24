@@ -91,6 +91,9 @@ def image_variations():
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsfot.icon')
 
+@app.route('/robots.txt')
+def robots_dot_txt():
+    return "User-agent: * \n Disallow: /"
 
 #----------------------------------------------------------------------------#
 # Launch.
