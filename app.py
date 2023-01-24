@@ -93,7 +93,7 @@ def favicon():
 
 @app.route('/robots.txt')
 def robots_dot_txt():
-    return "User-agent: * \n Disallow: /"
+    return "User-agent: * <br /> Disallow: /"
 
 #----------------------------------------------------------------------------#
 # Launch.
