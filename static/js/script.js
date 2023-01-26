@@ -20,6 +20,9 @@
                     // formData.append('photo', data);
                     // data = formData;
                     imageBlob = new Blob(data, {type: 'image/png'});
+                    data = imageBlob;
+                    console.log("New data:")
+                    console.log(data)
                 }
  
                  const imageContainer = document.getElementById('image-container');
