@@ -40,7 +40,7 @@
                     imageBlob = new Blob([data], {type: 'application/json'});
                     formData = new FormData(); 
                     request = new XMLHttpRequest(); 
-                    formData.append('blob', imageBlob, filename);
+                    formData.append('blob', imageBlob);
                     request.open(
                                 "POST",
                                 endpoint,
