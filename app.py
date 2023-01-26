@@ -61,7 +61,7 @@ def privacy():
 @app.route('/image-variations', methods=['POST', 'GET'])
 def image_variations():
     form = VariationsForm(request.form)
-    data = { 'form': 'variations-form', 'endpoint': '/image-variations', 'type': 'image/png'}
+    data = { 'form': 'variations-form', 'endpoint': '/image-variations', 'type': 'multipart/form-data'}
     return render_template('pages/placeholder.variations.html', form=form, data=data)
 
 def image_variations(): 
