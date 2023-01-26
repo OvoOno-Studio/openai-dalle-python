@@ -16,9 +16,10 @@
                  form === 'generate-form' && endpoint === '/generate' ? data = f.elements['text'].value : data = f.elements['photo'].files[0]; 
 
                 if (endpoint === '/image-variations') {
-                    formData = new FormData();
-                    formData.append('photo', data);
-                    data = formData;
+                    // formData = new FormData();
+                    // formData.append('photo', data);
+                    // data = formData;
+                    imageBlob = new Blob(data, {type: 'image/png'});
                 }
  
                  const imageContainer = document.getElementById('image-container');

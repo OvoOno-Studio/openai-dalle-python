@@ -72,10 +72,15 @@ def image_variations():
     # else:
     #     file_url = None
     photo = request.files['photo'] 
-
+    # Check if image size is 1024x1024px
     if photo.content_length > 4*1024*1024:
         flash('Error: File size exceeds 4MB') 
-
+        return
+    # Check if image format is PNG
+    if photo.content_type != 'image/png':
+        flash('Error: File format is not PNG')
+        return
+    
     n = 1 # Number of images 
     size = "1024x1024" # Resolution of the new image
     # Generate the variation of the uploaded image
@@ -86,6 +91,23 @@ def image_variations():
     )
     # Return variation of the uploaded image 
     return jsonify({'url': response['data'][0]['url']})
+
+
+@app.route('/oauth/callback', methods=["POST", "GET"])
+def oauth_callback():
+    # handle the OAuth callback
+    # Get the data passed in the request
+    data = request.args.get("data") or "empty"
+    # Log the data
+    app.logger.info(f"Received ping request with data: {data}")
+    # Return a JSON response to the external app
+    return jsonify({f"message": data})
+
+@app.route("/deauthorize", methods=["POST", "GET"])
+def deauthorize():
+    # Get the access token from the request
+    access_token = request.form.get("access_token") or "empty"
+    return jsonify({f"token": "{access_token}", "message": "Successfully deauthorized"})
 
 @app.route('/favicon.ico')
 def favicon():
