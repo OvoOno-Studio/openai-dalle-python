@@ -15,13 +15,6 @@
 
                  form === 'generate-form' && endpoint === '/generate' ? data = f.elements['text'].value : data = f.elements['photo'].files[0]; 
 
-                if (endpoint === '/image-variations') {
-                    imageBlob = new Blob([data], {type: 'image/png'});formData = new FormData();
-                    formData.append('photo', imageBlob);
-                    data = formData; 
-                    console.log("New data:");
-                    console.log(data);
-                }
  
                  const imageContainer = document.getElementById('image-container');
                  const linkContainer = document.getElementById('link-container'); 
@@ -41,6 +34,22 @@
                          linkContainer.removeChild(linkContainer.firstChild);
                      }
                  }
+
+                 
+                if (endpoint === '/image-variations') {
+                    imageBlob = new Blob([data], {type: 'application/json'});
+                    formData = new FormData(); 
+                    request = new XMLHttpRequest(); 
+                    formData.append('blob', imageBlob, filename);
+                    request.open(
+                                "POST",
+                                endpoint,
+                                true
+                            );
+                    request.send(form);
+                    console.log('sent');
+                    return;
+                }
  
                  fetch(endpoint, {
                      method: 'POST',
