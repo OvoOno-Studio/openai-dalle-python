@@ -61,7 +61,7 @@ def privacy():
 @app.route('/image-variations', methods=['POST', 'GET'])
 def image_variations():
     form = VariationsForm(request.form)
-    data = { 'form': 'variations-form', 'endpoint': '/image-variations', 'type': 'multipart/form-data'}
+    data = { 'form': 'variations-form', 'endpoint': '/image-variations', 'type': 'application/json'}
     return render_template('pages/placeholder.variations.html', form=form, data=data)
 
 def image_variations(): 
@@ -77,9 +77,9 @@ def image_variations():
         flash('Error: File size exceeds 4MB') 
         return
     # Check if image format is PNG
-    if photo.content_type != 'image/png':
-        flash('Error: File format is not PNG')
-        return
+    # if photo.content_type != 'image/png':
+    #     flash('Error: File format is not PNG')
+    #     return
     
     n = 1 # Number of images 
     size = "1024x1024" # Resolution of the new image

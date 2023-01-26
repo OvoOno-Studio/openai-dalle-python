@@ -37,10 +37,12 @@
 
                  
                 if (endpoint === '/image-variations') {
-                    imageBlob = new Blob([data], {type: 'application/json'});
-                    formData = new FormData();  
-                    formData.append('blob', imageBlob);
-                    data = formData; 
+                    reader = new FileReader();
+                    imageBlob = new Blob([data], { type: 'application/json' });
+                    reader.readAsDataURL(imageBlob);
+                    base64result = reader.result; 
+                    json = { "image": base64result };
+                    data = JSON.stringify(json); 
                 }
  
                  fetch(endpoint, {
