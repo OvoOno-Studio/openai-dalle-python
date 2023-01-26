@@ -38,17 +38,9 @@
                  
                 if (endpoint === '/image-variations') {
                     imageBlob = new Blob([data], {type: 'application/json'});
-                    formData = new FormData(); 
-                    request = new XMLHttpRequest(); 
+                    formData = new FormData();  
                     formData.append('blob', imageBlob);
-                    request.open(
-                                "POST",
-                                endpoint,
-                                true
-                            );
-                    request.send(form);
-                    console.log('sent');
-                    return;
+                    data = formData; 
                 }
  
                  fetch(endpoint, {
