@@ -31,8 +31,8 @@
                            linkContainer.removeChild(linkContainer.firstChild);
                        }
                    }  
-                   console.log(document.getElementById(form));
-                   var form = new FormData(document.getElementById(form)); 
+                   console.log(document.getElementById('variations-form'));
+                   var form = new FormData(document.getElementById('variations-form')); 
                    form.append("csrf_token", csrf_token);
                    var xhr = new XMLHttpRequest();
                    xhr.open("POST", "/image-variations", true);
