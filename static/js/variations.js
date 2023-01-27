@@ -42,8 +42,8 @@
                            // Creating new elements for link and generated image
                            const image = document.createElement('img');
                            const url = document.createElement('a');
-                           image.src = data.url;
-                           url.href = data.url;
+                           image.src = response.url;
+                           url.href = response.url;
                            url.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24"><path d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z" /></svg><span> Download Image </span>';
                            url.target = '_blank';
                            imageContainer.appendChild(image);
