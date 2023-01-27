@@ -61,9 +61,8 @@
                    xhr.send(form); 
                 });
             });  
-
-        window.onSubmit = onSubmit;
-    } 
+        }
+        window.onSubmit = onSubmit; 
  }).call(this);
  
  
