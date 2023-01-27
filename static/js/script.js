@@ -84,23 +84,25 @@
          }); 
     };
 
-    document.getElementById("variations-form").addEventListener("submit", function(e) {
-        e.preventDefault();
-        var form = new FormData(this);
-        var csrf_token = document.getElementsByName("csrf_token")[0].value;
-        form.append("csrf_token", csrf_token);
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "/image-variations", true);
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                var response = JSON.parse(xhr.responseText);
-                console.log(response.url);
-            } else {
-                console.error("Error: " + xhr.status);
-            }
-        };
-        xhr.send(form);
-    });
+    if (endpoint === '/image-variations'){
+        document.getElementById("variations-form").addEventListener("submit", function(e) {
+            e.preventDefault();
+            var form = new FormData(this);
+            var csrf_token = document.getElementsByName("csrf_token")[0].value;
+            form.append("csrf_token", csrf_token);
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "/image-variations", true);
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    console.log(response.url);
+                } else {
+                    console.error("Error: " + xhr.status);
+                }
+            };
+            xhr.send(form);
+        });
+    } 
  
     window.onSubmit = onSubmit;
  }).call(this);
