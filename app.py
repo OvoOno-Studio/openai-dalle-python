@@ -58,8 +58,8 @@ def generate():
 def privacy():
     return render_template('pages/placeholder.privacy.html')
 
-@app.route('/image-variations', methods=['POST', 'GET'])
-def image_variations():
+@app.route('/variations', methods=['POST', 'GET'])
+def variations():
     form = VariationsForm(request.form)
     data = { 'form': 'variations-form', 'endpoint': '/image-variations', 'type': 'application/json'}
     return render_template('pages/placeholder.variations.html', form=form, data=data)
@@ -67,6 +67,9 @@ def image_variations():
 @app.route('/image-variations', methods=['POST'])
 def image_variations():  
     photo = request.files['photo'] 
+    if not photo or not photo.filename:
+        flash('Error: No photo selected')
+        return
     # Check if image size is 1024x1024px
     if photo.content_length > 4*1024*1024:
         flash('Error: File size exceeds 4MB') 
