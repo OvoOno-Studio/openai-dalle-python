@@ -36,14 +36,14 @@
                  }
 
                  
-                if (endpoint === '/image-variations') {
-                    reader = new FileReader();
-                    imageBlob = new Blob([data], { type: 'application/json' });
-                    reader.readAsDataURL(imageBlob);
-                    base64result = reader.result; 
-                    json = { "image": base64result };
-                    data = JSON.stringify(json); 
-                }
+                // if (endpoint === '/image-variations') {
+                //     reader = new FileReader();
+                //     imageBlob = new Blob([data], { type: 'application/json' });
+                //     reader.readAsDataURL(imageBlob);
+                //     base64result = reader.result; 
+                //     json = { "image": base64result };
+                //     data = JSON.stringify(json); 
+                // }
  
                  fetch(endpoint, {
                      method: 'POST',
@@ -82,9 +82,27 @@
                  });
              });
          }); 
-     };
+    };
+
+    document.getElementById("variations-form").addEventListener("submit", function(e) {
+        e.preventDefault();
+        var form = new FormData(this);
+        var csrf_token = document.getElementsByName("csrf_token")[0].value;
+        form.append("csrf_token", csrf_token);
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/image-variations", true);
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                var response = JSON.parse(xhr.responseText);
+                console.log(response.url);
+            } else {
+                console.error("Error: " + xhr.status);
+            }
+        };
+        xhr.send(form);
+    });
  
-     window.onSubmit = onSubmit;
+    window.onSubmit = onSubmit;
  }).call(this);
  
  

@@ -15,5 +15,5 @@ class DonateForm(FlaskForm):
     submit = SubmitField('Donate')
 #VariationsForm class for generating variations of uploaded image
 class VariationsForm(FlaskForm):
-    photo = FileField('Image', validators=[FileRequired(), FileAllowed(['png'], 'Only PNG allowed!')])
+    photo = FileField('Photo', validators=[FileRequired(), FileAllowed(['png'], 'Only PNG allowed!')])
     submit = SubmitField('Generate')

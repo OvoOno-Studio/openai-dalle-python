@@ -64,23 +64,17 @@ def image_variations():
     data = { 'form': 'variations-form', 'endpoint': '/image-variations', 'type': 'application/json'}
     return render_template('pages/placeholder.variations.html', form=form, data=data)
 
-def image_variations(): 
-    # form = VariationsForm(request.form)
-    # if form.validate_on_submit():
-    #     filename = photos.save(form.photo.data)
-    #     file_url = photos.url(filename)
-    # else:
-    #     file_url = None
+@app.route('/image-variations', methods=['POST'])
+def image_variations():  
     photo = request.files['photo'] 
     # Check if image size is 1024x1024px
     if photo.content_length > 4*1024*1024:
         flash('Error: File size exceeds 4MB') 
         return
-    # Check if image format is PNG
-    # if photo.content_type != 'image/png':
-    #     flash('Error: File format is not PNG')
-    #     return
-    
+    #Check if image format is PNG
+    if photo.content_type != 'image/png':
+        flash('Error: File format is not PNG')
+        return 
     n = 1 # Number of images 
     size = "1024x1024" # Resolution of the new image
     # Generate the variation of the uploaded image
