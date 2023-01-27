@@ -4,12 +4,12 @@
         const endpoint = data.endpoint // or /variations
         const type = data.type // text/plain 
     </script>
-    
-    {% if endpoint == '/image-variations' %}
+
+    {% if data.endpoint == '/image-variations' %}
         <script type="text/javascript" src="{{ url_for('static', filename = 'js/variations.js') }}"></script>
     {% endif %}
 
-    {% if endpoint == '/generate' %}
+    {% if data.endpoint == '/generate' %}
         <script type="text/javascript" src="{{ url_for('static', filename = 'js/generate.js') }}"></script>
     {% endif %}
 
