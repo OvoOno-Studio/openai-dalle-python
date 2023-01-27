@@ -3,8 +3,7 @@
     console.log('Form ID: ' + form);
     console.log('Endpoint: ' + endpoint);
     console.log('Type: ' + type); 
-    
-    window.onload = function() {
+     
         function onSubmit(){  
             event.preventDefault();
             // Execute the reCAPTCHA verification
@@ -33,7 +32,7 @@
                        }
                    }  
    
-                   var form = new FormData(this); 
+                   var form = new FormData(f); 
                    form.append("csrf_token", csrf_token);
                    var xhr = new XMLHttpRequest();
                    xhr.open("POST", "/image-variations", true);
@@ -61,8 +60,7 @@
                    };
                    xhr.send(form); 
                 });
-            }); 
-       }; 
+            });  
 
         window.onSubmit = onSubmit;
     } 
