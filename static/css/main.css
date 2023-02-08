@@ -49,6 +49,10 @@ h3 {
     font-size: 20px; /* Adjust font size for h3 */
 }
 
+img {
+    border: 2px solid #f1e4f4;
+}
+
 div#image-container {
     text-align: center;
 }
