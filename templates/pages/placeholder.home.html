@@ -1,6 +1,4 @@
-{% extends 'layouts/main.html' %} 
-
-{% block title %} DALLE-E 2: The Ultimate Image Generator {% endblock %}
+{% extends 'layouts/main.html' %}  
 
 {% block heading %} Welcome to the DALLE-E 2 Image Generator {% endblock %} 
 
@@ -14,17 +12,17 @@
         </blockquote> 
     </div>
     <div class="column column-30"> 
-        <img src="{{url_for('static', filename='images/home03.png')}}" alt="A robot testing application.">      
+        <img src="{{url_for('static', filename='images/img-FBoO3CQ2WcNkpCc0uabrKkDI.png')}}" alt="close-up photo of old Arab man's face, 100yo, high detail, studio, sharp, golden hour, studio, 85mm sigma art lens, editorial fashion photography, from Vogue magazine">      
         <blockquote>
             <span class="pln"></span>
-            <p><em><span class="pln">"A robot testing application."</span></em></p>
+            <p><em><span class="pln">"close-up photo of old Arab man's face, 100yo, high detail, studio, sharp, golden hour, studio, 85mm sigma art lens, editorial fashion photography, from Vogue magazine"</span></em></p>
         </blockquote>
     </div>
     <div class="column column-30"> 
-        <img src="{{url_for('static', filename='images/home01.png')}}" alt="An animated pyramid.">
+        <img src="{{url_for('static', filename='images/img-tal4oES9sxvBifwAi2NKRMoa.png')}}" alt="A puzzled robot is looking at a painting.">
         <blockquote>
             <span class="pln"></span>
-            <p><em><span class="pln">"An animated pyramid."</span></em></p>
+            <p><em><span class="pln">"A puzzled robot is looking at a painting."</span></em></p>
         </blockquote> 
     </div>
 </div>
@@ -45,7 +43,7 @@
             Whatever your goals may be, our image generator has something for you. 
             Give it a try and see the magic happen!
         </p> 
-        <small> Before generating the images, please check out <a href="/content-policy">content policy</a>.</small>
+        <small class="margin-bottom20"> Before generating the images, please check out <a href="/content-policy">content policy</a>.</small>
     </div>
     <div class="column column-50"> 
         {% include 'forms/donate.html' %}

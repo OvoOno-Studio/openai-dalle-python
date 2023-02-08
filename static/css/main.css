@@ -80,6 +80,10 @@ footer p {
 
 /* Various other styles end */
 
+.margin-bottom20 {
+    margin-bottom: 20px;
+}
+
 .text-right {
     text-align: right;
 }
