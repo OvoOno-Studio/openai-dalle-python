@@ -54,9 +54,13 @@ def generate():
     # Return the generated image URL to the client 
     return jsonify({'url': response['data'][0]['url']})
 
-@app.route('/privacy', methods=['POST', 'GET'])
+@app.route('/privacy')
 def privacy():
     return render_template('pages/placeholder.privacy.html')
+
+@app.route('/content-policy')
+def policy():
+    return render_template('pages/placeholder.content-policy.html')
 
 @app.route('/variations', methods=['POST', 'GET'])
 def variations():
