@@ -1,2 +1,8 @@
 flask
-request
+requests
+Flask-Uploads
+Flask-Reuploaded
+Flask-WTF
+python-dotenv
+openai
+urllib3==1.26.7

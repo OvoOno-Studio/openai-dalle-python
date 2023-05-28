@@ -21,7 +21,7 @@ app = Flask(__name__) # Init app
 # Application Configuration
 app.config['SECRET_KEY'] = SecretKey # Secret Key
 app.config['MAX_CONTENT_LENGTH'] = 4 * 1024 * 1024  # 4MB max-limit.
-app.config['SERVER_NAME'] = 'dalle.emelrizvanovic.com'
+app.config['SERVER_NAME'] = 'dalle-generator.ovoono.studio'
 app.config['SESSION_COOKIE_DOMAIN'] = False
 app.config['UPLOADED_PHOTOS_DEST'] = os.path.join(basedir, 'static/uploads')
 
