@@ -9,21 +9,21 @@
 ****************************************************************************/
 
 @font-face {
-    font-family: 'Roboto';
-    src: url("../fonts/Roboto-Regular.ttf") format('truetype');
+    font-family: 'Ubuntu';
+    src: url("../fonts/Ubuntu-Regular.ttf") format('truetype');
 }
 
 @font-face {
-    font-family: 'Montserrat';
-    src: url('../fonts/Montserrat-Regular.ttf') format('truetype');
+    font-family: 'Poppins';
+    src: url('../fonts/Poppins-Regular.ttf') format('truetype');
 }
 
 /* Main elements end */
 body {
     background: linear-gradient(135deg,#0a000f,#4d0085);
-    color: #F5F5F5; /* Best font color to go with dark purple background */
-    font-family: 'Roboto', sans-serif; /* Change font for heading and paragraphs */
+    color: #F5F5F5; /* Best font color to go with dark purple background */ 
     font-size: 16px; /* Adjust font size for body text */
+    font-family: 'Ubuntu', sans-serif;
     margin: 0px;
     margin-top: 10px;
 }
@@ -33,13 +33,13 @@ body {
 }
 
 h1, h2, h3 {
-    font-family: 'Montserrat', sans-serif; /* Change font for headings */
+    font-family: 'Poppins', sans-serif; /* Change font for headings */
     font-weight: 600; /* Make headings bold */
 }
 
 h1 {
     font-size: 36px; /* Adjust font size for h1 */
-    color: #F5D042;
+    color: #67c4a5;
 }
 
 h2 {
@@ -80,6 +80,27 @@ form#generate-form input {
 form#generate-form .form-group {
     display: flex;
     gap: 10px;
+}
+
+form#generate-form .button {
+    display: inline-block;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    background-color: #41046a87;
+    text-transform: uppercase;
+    font-weight: 700;
+    border: none; 
+    transition: background-color .2s ease-in-out,color .2s ease-in-out,box-shadow .2s ease-in-out;
+    cursor: pointer;
+}
+
+form#generate-form .button:hover { 
+    background-color: #67c4a5;
+    color: #0c0012;
 }
 
 footer {
