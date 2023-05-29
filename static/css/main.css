@@ -89,6 +89,10 @@ footer p {
     margin-bottom: -25px;
 }
 
+#generate-form label {
+    display: none;
+}
+
 
 /*****************************************************************************
 * Various other styles

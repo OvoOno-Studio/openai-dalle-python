@@ -1,7 +1,7 @@
 <form id="generate-form" method="post" action="{{url_for('generate')}}">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
     <div class="form-group">
-        {{ form.text.label }} {{ form.text(class="form-control") }}
+        {{ form.text.label }} {{ form.text(class="form-control", placeholder="Text prompt") }}
         {% for error in form.text.errors %}
             <span style="color: red;">[{{ error }}]</span>
         {% endfor %}
