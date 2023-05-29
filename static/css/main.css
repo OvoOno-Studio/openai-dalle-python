@@ -83,8 +83,7 @@ form#generate-form .form-group {
 }
 
 form#generate-form button {
-    display: inline-block;
-    padding: 12px 24px;
+    display: inline-block; 
     font-size: 14px;
     font-weight: 500;
     text-align: center;
