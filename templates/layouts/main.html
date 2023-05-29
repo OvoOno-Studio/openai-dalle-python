@@ -4,7 +4,6 @@
         <div class="row">
             <h1>{% block heading %}{% endblock %}</h1> 
         </div>
-        {% block content %}{% endblock %} 
         <div class="row">
             <div class="column">  
                 {% include 'forms/generate.html' %}
@@ -27,5 +26,7 @@
                 <div id="image-container"></div>
             </div>
         </div> 
+        
+        {% block content %}{% endblock %} 
     </div> 
 {% include 'partials/_footer.html' %}
