@@ -1,5 +1,3 @@
-
-
 /**
 * @file
 * Main stylesheet file.
@@ -55,6 +53,13 @@ img {
 
 div#image-container {
     text-align: center;
+    display: flex;
+    gap: 10px;
+    margin: 44px 0px;
+}
+
+div#image-container img {
+    width: 33%;
 }
 
 #link-container a{

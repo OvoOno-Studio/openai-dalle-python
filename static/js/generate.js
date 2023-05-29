@@ -14,7 +14,6 @@
                  const csrf_token = document.getElementsByName("csrf_token")[0].value;
 
                  form === 'generate-form' && endpoint === '/generate' ? data = f.elements['text'].value : data = f.elements['photo'].files[0]; 
-
  
                  const imageContainer = document.getElementById('image-container');
                  const linkContainer = document.getElementById('link-container'); 
