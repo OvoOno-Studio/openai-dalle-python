@@ -5,7 +5,7 @@ from wtforms.validators import DataRequired, Length, Regexp
 
 # GenerateForm class for generating AI images
 class GenerateForm(FlaskForm):
-    text = StringField('Text prompt:', validators=[DataRequired(), Length(min=2, max=200)])
+    text = StringField('Text prompt:', validators=[DataRequired(), Length(min=2, max=200), Regexp(r'^[A-Za-z0-9]*$', message="Special characters are not allowed.")])
     recaptcha = RecaptchaField()
     submit = SubmitField('Generate')
 #DonateForm class for donating author in Etherum
