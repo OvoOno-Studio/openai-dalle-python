@@ -69,6 +69,10 @@ div#image-container img {
     justify-content: center;
 }
 
+form#generate-form input {
+    color: #fff;
+}
+
 footer {
     background: linear-gradient(135deg,#0a000f,#4d0085);
     color: #fff;
