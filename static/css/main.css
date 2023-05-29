@@ -28,6 +28,10 @@ body {
     margin-top: 10px;
 }
 
+.container {
+    padding: 2rem;
+}
+
 h1, h2, h3 {
     font-family: 'Montserrat', sans-serif; /* Change font for headings */
     font-weight: 600; /* Make headings bold */
