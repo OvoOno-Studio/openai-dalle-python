@@ -41,7 +41,7 @@ def index():
 def generate(): 
     text = request.data # Get the text to generate an image for
     prompt = str(text) # Set the prompt for the image   
-    num_images = 1
+    num_images = 3 # change this to generate 3 images
     size = "1024x1024"
     response_format = "url" # Format of generated image
     # Generate the image
@@ -51,8 +51,8 @@ def generate():
         size=size,
         response_format=response_format 
     )   
-    # Return the generated image URL to the client 
-    return jsonify({'url': response['data'][0]['url']})
+    # Return the generated image URLs to the client 
+    return jsonify({'urls': [data['url'] for data in response['data']]})  # changed this to return all urls
 
 @app.route('/privacy')
 def privacy():

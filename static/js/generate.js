@@ -56,19 +56,21 @@
                      return response.json();
                  })
                  .then(data => {
-                     // Creating new elements for link and generated image
-                     const image = document.createElement('img');
-                     const url = document.createElement('a');
-                     image.src = data.url;
-                     url.href = data.url;
-                     url.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24"><path d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z" /></svg><span> Download Image </span>';
-                     url.target = '_blank';
-                     imageContainer.appendChild(image);
-                     linkContainer.appendChild(url);
-                     // Hide loader on image loading
-                     document.getElementById('loader').style.display = 'none';
-                     // Enable submit form button
-                     document.getElementById('g-recaptcha-button').disabled = false;
+                    data.urls.forEach(imageUrl => {   // Iterate through each image URL
+                        // Creating new elements for link and generated image
+                        const image = document.createElement('img');
+                        const url = document.createElement('a');
+                        image.src = imageUrl;
+                        url.href = imageUrl;
+                        url.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24"><path d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z" /></svg><span> Download Image </span>';
+                        url.target = '_blank';
+                        imageContainer.appendChild(image);
+                        linkContainer.appendChild(url);
+                    });
+                    // Hide loader on image loading
+                    document.getElementById('loader').style.display = 'none';
+                    // Enable submit form button
+                    document.getElementById('g-recaptcha-button').disabled = false;
                  })
                  .catch(error => {
                      console.error(error);
