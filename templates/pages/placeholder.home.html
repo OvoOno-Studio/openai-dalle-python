@@ -7,7 +7,7 @@
     {% include 'partials/images.html' %}
 
     <div class="row">
-        <div class="column">
+        <div class="column column-50">
             <h2> About AI Image Generator: </h2>  
             <p>    
                 With our web application, you can easily turn your ideas into stunning, photorealistic images with just a few simple text prompts. 
@@ -24,6 +24,9 @@
                 Give it a try and see the magic happen!
             </p> 
             <small class="margin-bottom20"> Before generating the images, please check out <a href="/content-policy">content policy</a>.</small>
+        </div>
+        <div class="column column-25"> 
+            {% include 'forms/donate.html' %}
         </div>
     </div>
 {% endblock %}
