@@ -22,7 +22,7 @@
 
 /* Main elements end */
 body {
-    background-color: #5E3A71;
+    background: linear-gradient(135deg,#0a000f,#4d0085);
     color: #F5F5F5; /* Best font color to go with dark purple background */
     font-family: 'Roboto', sans-serif; /* Change font for heading and paragraphs */
     font-size: 16px; /* Adjust font size for body text */
@@ -65,7 +65,7 @@ div#image-container {
 }
 
 footer {
-    background-color: #1e1e1e;
+    background: linear-gradient(135deg,#0a000f,#4d0085);
     color: #fff;
     padding: 30px; 
 } 
