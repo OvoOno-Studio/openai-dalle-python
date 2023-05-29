@@ -80,7 +80,7 @@ form#generate-form input {
 footer {
     background: linear-gradient(135deg,#0a000f,#4d0085);
     color: #fff;
-    padding: 30px; 
+    padding: 0px 15px 15px 15px;
 } 
 
 footer p {
