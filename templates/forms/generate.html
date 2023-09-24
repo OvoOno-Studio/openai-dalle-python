@@ -1,12 +1,19 @@
 <form id="generate-form" method="post" action="{{url_for('generate')}}">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
     <div class="form-group">
-        {{ form.text.label }} {{ form.text(class="form-control", placeholder="Text prompt") }}
+        {{ form.text.label }} {{ form.text(class="form-control", placeholder="From Words To Visuals") }}
         {% for error in form.text.errors %}
-            <span style="color: red;">[{{ error }}]</span>
+        <span style="color: red;">[{{ error }}]</span>
         {% endfor %}
+        
+        <select class="resolution">
+            <option value="1024x1024">1024x1024</option>
+            <option value="soon">soon</option>
+            <!-- Add more resolution options as needed -->
+        </select>
 
-         <!-- Add the reCAPTCHA widget --> 
-         <button id="g-recaptcha-button" class="g-recaptcha" type="submit" data-sitekey="6LdeTdAjAAAAAPGWzX9fKu4lUXMeef2zaAhs-nXy" data-callback='onSubmit' data-action='submit'>Generate</button>
+
+        <!-- Add the reCAPTCHA widget -->
+        <button id="g-recaptcha-button" class="g-recaptcha" type="submit" data-sitekey="6LdeTdAjAAAAAPGWzX9fKu4lUXMeef2zaAhs-nXy" data-callback='onSubmit' data-action='submit'>Generate</button>
     </div> 
 </form>

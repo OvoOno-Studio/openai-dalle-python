@@ -1,32 +1,49 @@
 {% include 'partials/_head.html' %}
 <body>
-    <div class="container"> 
-        <div class="row">
-            <h1>{% block heading %}{% endblock %}</h1> 
+    <nav class="navbar">
+        <img class="nvbLogo" src="{{url_for('static', filename='images/Image-Generator.png')}}" alt="Image Generator">
+        <div class="menu-items">
+            <a>Home</a>
+            <a>Create</a>
+            <a>Learn</a>
+            <a>About</a>
         </div>
-        <div class="row">
-            <div class="column">  
-                {% include 'forms/generate.html' %}
-            </div>  
+        <div class="logIn">
+            <button class="signUp" id="signUpButton">Sign Up</button>
+            <button class="signIn" id="signInButton">Sign In</button>
+            <div id="soonText" class="soonText">Log-in function will be implemented soon</div>
+        </div>
+        
+    </nav>
+    <div class="container">
+        <div class="divImg">
+            <img class="logoHeader" src="{{url_for('static', filename='images/Image-Generator.png')}}" alt="Logo Header">
+        </div>
+        <div class="header">
+            <h1>{% block heading %}{% endblock %}</h1>
         </div>
         <div class="row">
             <div class="column">
-                <div class="row">
-                    <div class="column">
-                        <h3> 1024x1024 resolution </h3>
-                    </div>
-                    <div class="column column-offset-50 text-right">
-                        <div id="link-container" class="column column-offset-25"></div>
-                    </div>
-                </div>
-                <!-- The HTML markup for the loading animation -->
-                <div id="loader" style="display: none;">
-                    <h5>Loading...</h5> 
-                </div>
-                <div id="image-container"></div>
+                {% include 'forms/generate.html' %}
             </div>
-        </div> 
+        </div>
+        <div class="row">
+            <div class="column">
+                <!-- The HTML markup for the loading animation -->
+                <div id="loader" style="display: block;">
+                    <div class="pan">
+                        <div class="handle"></div>
+                        <div class="pan-body">
+                            <div class="pan-handle"></div>
+                        </div>
+                    </div>
+                    <h5 class="loading-text">Cooking...</h5>
+                </div>
+             
+            </div>
+        </div>
+
+        {% block content %}{% endblock %}
+    </div>
+        {% include 'partials/_footer.html' %}
         
-        {% block content %}{% endblock %} 
-    </div> 
-{% include 'partials/_footer.html' %}

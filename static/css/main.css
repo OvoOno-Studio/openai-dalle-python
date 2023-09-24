@@ -20,12 +20,145 @@
 
 /* Main elements end */
 body {
-    background: linear-gradient(135deg,#0a000f,#4d0085);
-    color: #F5F5F5; /* Best font color to go with dark purple background */ 
+    background: #2C1127;
+    color: #F5F5F5; /* Best font color to go with dark purple background */
     font-size: 16px; /* Adjust font size for body text */
-    font-family: 'Ubuntu', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     margin: 0px;
     margin-top: 10px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 200;
+    position: relative;
+    height: 65px;
+    z-index: 9999;
+    padding: 0.2rem;
+    background-color: transparent;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+
+.signUp {
+    color: white; 
+    background: transparent;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    
+}
+
+    .signUp::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to right, #65C3A4 30%, #2C7DFA);
+        transition: left 0.3s ease;
+        z-index: -1;
+    }
+
+    .signUp:hover::before {
+        left: 0;
+    }
+
+.signIn {
+    color: white; 
+    background: linear-gradient(to right, #65C3A4 0%, #2C7DFA);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    cursor: pointer; 
+}
+
+    .signIn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to right, #65C3A4 30%, #2C7DFA);
+        transition: left 0.3s ease-in;
+        z-index: -1;
+    }
+
+    .signIn:hover::before {
+        left: 0;
+    }
+
+
+
+.soonText {
+    display: none;
+}
+
+
+#signUpButton:focus + .soonText,
+#signInButton:focus + .soonText {
+    display: block;
+}
+
+
+.navbar a {
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    position: relative;
+}
+
+.navbar a:before{
+    content:"";
+    position: absolute;
+    bottom: 8px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: transparent;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.navbar a:hover:before{
+    background-color: white;
+    transform: scaleX(1);
+}
+
+.menu-items {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the menu items horizontally */
+    flex-grow: 1;
+}
+
+.nvbLogo {
+    border: none;
+    width: 18rem;
+    margin-right: 20px;
+}
+.divImg {
+    display: flex;
+    justify-content: center;
+}
+.divImg img{
+    border: none;
+    width: 30rem;
+}
+
+.header{
+    display: flex;
+    justify-content: center;
+}
+.row {
+    display: flex;
+    justify-content: center;
 }
 
 .container {
@@ -38,7 +171,9 @@ h1, h2, h3 {
 }
 
 h1 {
-    font-size: 36px; /* Adjust font size for h1 */
+    margin-top: -5rem;
+    margin-bottom: 5rem;
+    font-size: 50px; /* Adjust font size for h1 */
     color: #67c4a5;
 }
 
@@ -54,6 +189,36 @@ h3 {
 img {
     border: 2px solid #f1e4f4;
 }
+select {
+    appearance: none;
+    border: 0;
+    outline: 0;
+    font: inherit;
+    width: 20em;
+    height: 3em;
+    padding: 0 4em 0 1em;
+    color: white;
+    border-radius: 1.25em;
+    cursor: pointer;
+    background-color: #210D1D;
+}
+
+    /* Style <option> colors */
+    select option {
+        color: #2C1127;
+        background-color: white;
+    }
+
+    /* Remove focus outline */
+    select:focus {
+        outline: none;
+    }
+
+    /* Remove IE arrow */
+    select::-ms-expand {
+        display: none;
+    }
+
 
 div#image-container {
     text-align: center;
@@ -74,16 +239,25 @@ div#image-container img {
 }
 
 form#generate-form input {
-    color: #fff;
+    color: white;
+    border: 0.1rem solid white;
+    border-radius: 2.4rem;
+    height: 5rem;
+    width: 70rem;
 }
 
 form#generate-form .form-group {
     display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     gap: 10px;
 }
+<<<<<<< HEAD
 
 form#generate-form button {
-    display: inline-block; 
+    display: inline-block;
+    padding: 12px 24px;
     font-size: 14px;
     font-weight: 500;
     text-align: center;
@@ -95,12 +269,41 @@ form#generate-form button {
     border: none; 
     transition: background-color .2s ease-in-out,color .2s ease-in-out,box-shadow .2s ease-in-out;
     cursor: pointer;
+=======
+button {
+    font-family: 'Montserrat', sans-serif;
+    border: none;
+    border-radius: 1.4rem;
+>>>>>>> 96fe90f (update design)
 }
 
-form#generate-form button:hover { 
-    background-color: #67c4a5;
-    color: #0c0012;
+
+.form-group button {
+    height: 50px;
+    color: #2C1127;
+    background: linear-gradient(to right, #C2E7DB, #65C3A4);
+    font-size: 18px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
 }
+
+    .form-group button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%; 
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to right, #65C3A4, #C2E7DB);
+        transition: left 0.3s ease-in; 
+        z-index: -1; 
+    }
+
+    .form-group button:hover::before {
+        left: 0; 
+    }
+
 
 footer {
     background: linear-gradient(135deg,#0a000f,#4d0085);
@@ -124,6 +327,25 @@ footer p {
 ****************************************************************************/
 
 /* Various other styles end */
+/* Intro section */
+.intro {
+    background-color: #f9f9f9;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+    .intro h2 {
+        font-size: 32px;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .intro p {
+        font-size: 18px;
+        color: #555;
+        line-height: 1.6;
+    }
 
 .margin-bottom20 {
     margin-bottom: 20px;
@@ -143,4 +365,76 @@ footer p {
 
 .show {
     display: block;
+}
+/* Loader Animation */
+#loader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.pan {
+    width: 100px;
+    height: 100px;
+    background-color: transparent;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    animation: panRotate 2s linear infinite;
+}
+
+    .pan .handle {
+        width: 10px;
+        height: 50px;
+        background-color: #8C8C8C;
+        border-radius: 20%;
+    }
+
+.pan-body {
+    width: 50px;
+    height: 50px;
+    background-color: #404B51;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.pan-handle {
+    width: 15px;
+    height: 15px;
+    background-color: #FFE87E;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.loading-text {
+    font-size: 18px;
+    color: #333;
+    margin-top: 20px;
+}
+
+@keyframes panRotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(180deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
